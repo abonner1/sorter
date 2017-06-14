@@ -35,7 +35,7 @@ RSpec.configure do |config|
   config.before(:each) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
-    load "#{Rails.root}/db/seed.rb"
+    load "#{Rails.root}/db/seeds.rb"
   end
 
   config.before(:eash, :js => true) do
