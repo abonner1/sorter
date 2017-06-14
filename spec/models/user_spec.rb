@@ -17,6 +17,7 @@ RSpec.describe User, type: :model do
 
     it "validates user when present" do
       @user.username = nil
+      @user.name = nil
       expect(@user).not_to be_valid
     end
   end
