@@ -33,7 +33,7 @@ RSpec.describe Resource, type: :model do
 
   describe "assocations" do
     it "has many topics" do
-      expect(@resource.topics).to eq(1)
+      expect(@resource.topics.count).to eq(1)
     end
 
     it "belongs to a user" do
