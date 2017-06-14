@@ -33,9 +33,18 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'devise'
+
+gem 'omniauth'
+gem 'omniauth-github'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~>3.0'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
 end
 
 group :development do
