@@ -2,9 +2,15 @@
 <p>The perfect place to organize all your web resources on anything coding. And see what others are learning.</p>
 
 <% if user_signed_in? %>
+<h3>Here's what people have been reading:</h3>
   <ul>
     <% @resources.each do |resource| %>
       <li><%= link_to resource.title, resource_path(resource) %></li>
+      <ul>
+        <% resource.topics.each do |topic| %>
+          <li><%= link_to "##{topic.name}", topic_path(topic) %></li>
+        <% end %>
+      </ul>
     <% end %>
   </ul>
 <% end %>

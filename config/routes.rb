@@ -8,5 +8,5 @@ Rails.application.routes.draw do
 
   resources :resources
 
-  get '/topics/:id', to: 'topics#show'
+  get '/topics/:id', to: 'topics#show', as: "topic"
 end
