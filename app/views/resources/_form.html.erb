@@ -13,3 +13,6 @@
   <%= topic_fields.text_field :name %>
 <% end %><br />
 <%= f.hidden_field(:user_id, value: current_user.id) %>
+<% if params[:course_id] %>
+  <%= f.hidden_field(:course_id, value: params[:course_id]) %>
+<% end %>
