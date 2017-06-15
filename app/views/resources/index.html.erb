@@ -1,2 +1,10 @@
 <h1>Welcome to Sorter!</h1>
-<p>The perfect place to organize all your web resources on anything coding.</p>
+<p>The perfect place to organize all your web resources on anything coding. And see what others are learning.</p>
+
+<% if user_signed_in? %>
+  <ul>
+    <% @resources.each do |resource| %>
+      <li><%= resource.title %></li>
+    <% end %>
+  </ul>
+<% end %>
