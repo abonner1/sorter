@@ -9,6 +9,9 @@
   </head>
 
   <body>
+    <%= render '/layouts/navigation' %>
+    <%= render '/layouts/messages' %>
     <%= yield %>
+    <%= render '/layouts/current_user' %>
   </body>
 </html>
