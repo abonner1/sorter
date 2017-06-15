@@ -1,6 +1,7 @@
 class ResourcesController < ApplicationController
 
   def index
+    @resources = Resource.all
   end
 
   def new
@@ -20,5 +21,5 @@ class ResourcesController < ApplicationController
 
   def destroy
   end
-  
+
 end
