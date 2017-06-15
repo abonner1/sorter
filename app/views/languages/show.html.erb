@@ -3,3 +3,4 @@
 <ul>
   <%= render partial: "/resources/display_resources", collection: @language.resources, as: :resource %>
 </ul>
+<%= button_to "Delete #{@language.name}", language_path(@language), method: "delete" %>
