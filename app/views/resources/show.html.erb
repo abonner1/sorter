@@ -1,6 +1,8 @@
 <h1><%= @resource.title %></h1>
 <p>Added by <%= @resource.user_name %>.</p>
 
+<p><%= @resource.language_name %></p>
+
 <h3>Topics:</h3>
 <ul>
   <% @resource.topics.each do |topic| %>
