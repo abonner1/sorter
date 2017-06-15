@@ -10,7 +10,15 @@ class Resource < ApplicationRecord
   scope :by_language, -> {includes(:language).order("languages.name ASC")}
   scope :favorited, -> {where(favorited: true)}
 
+  accepts_nested_attributes_for :topics
+
   def user_name
     self.user.username
+  end
+
+  def topics_attributes=(topics_attributes)
+    topics_attributes.values.each do |topic_attribute|
+      self.topics.find_or_initialize_by(topic_attribute)
+    end
   end
 end
