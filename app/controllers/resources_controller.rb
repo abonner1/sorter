@@ -21,6 +21,8 @@ class ResourcesController < ApplicationController
   end
 
   def destroy
+    @resource.destroy
+    redirect_to root_path
   end
 
   private
