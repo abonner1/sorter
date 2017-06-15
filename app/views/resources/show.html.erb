@@ -9,10 +9,10 @@
     <li><%= topic.name %></li>
   <% end %>
 </ul>
-<p>URL: <%= link_to "http://#{@resource.url}", "http://#{@resource.url}" %></p>
+<p>URL: <%= link_to @resource.url, @resource.url %></p>
 
 <h3>What it's about:</h3>
 <p><%= @resource.description %></p>
 
 <%= link_to "Edit this Resource", edit_resource_path(@resource) if correct_user %>
-<%= button_to "Delete this Resource", resource_path(@resource), method: 'delete' %>
+<%= button_to "Delete this Resource", resource_path(@resource), method: 'delete' if correct_user%>
