@@ -13,3 +13,4 @@
 <p><%= @resource.description %></p>
 
 <%= link_to "Edit this Resource", edit_resource_path(@resource) %>
+<%= button_to "Delete this Resource", resource_path(@resource), method: 'delete' %>
