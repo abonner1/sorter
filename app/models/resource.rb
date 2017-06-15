@@ -16,9 +16,13 @@ class Resource < ApplicationRecord
     self.user.username
   end
 
+  def language_name
+    self.language.name
+  end
+
   def topics_attributes=(topics_attributes)
     topics_attributes.values.each do |topic_attribute|
-      self.topics.find_or_initialize_by(topic_attribute)
+      self.topics.find_or_initialize_by(topic_attribute) if topic_attribute[:name].present?
     end
   end
 end
