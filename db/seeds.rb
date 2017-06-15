@@ -8,7 +8,7 @@ second_user = User.create(
       email: "aviflombaum@flatiron.com",
       password: "password")
 
-ruby_on_rails = Language.create(name: "Ruby on Rails")
+python = Language.create(name: "Python")
 javascript = Language.create(name: "JavaScript")
 ruby = Language.create(name: "Ruby")
 
@@ -21,7 +21,7 @@ new_resource = first_user.resources.build(
       url: "guides.rubyonrails.org/association_basics.html",
       description: "This is a resource!")
 
-new_resource.language = ruby_on_rails
+new_resource.language = ruby
 new_resource.topics << new_topic
 new_resource.save
 
