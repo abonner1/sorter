@@ -3,4 +3,5 @@ class Topic < ApplicationRecord
   has_many :resources, through: :resource_topics
 
   validates :name, presence: true
+  validates :name, uniqueness: true
 end
