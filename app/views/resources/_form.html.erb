@@ -1,0 +1,15 @@
+<%= f.label :title %>:
+<%= f.text_field :title %><br />
+<%= f.label :url %>:
+<%= f.text_field :url %><br />
+<%= f.label :description %>:
+<%= f.text_area :description %><br />
+<%= f.label "Select programming language:" %>
+<%= f.collection_select(:language_id, Language.all, :id, :name, {:include_blank => "Please select"})%><br  />
+<%= f.label "Topics it covers:" %>
+<%= f.collection_check_boxes :topic_ids, Topic.all, :id, :name%><br />
+<%= f.fields_for :topics, @resource.topics.build do |topic_fields| %>
+  <%= topic_fields.label "Or add a new topic:" %>
+  <%= topic_fields.text_field :name %>
+<% end %><br />
+<%= f.hidden_field(:user_id, value: current_user.id) %>
