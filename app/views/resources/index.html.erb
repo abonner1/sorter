@@ -1,4 +1,10 @@
 <h1>Your Resources</h1>
+
 <ul>
-  <%= render partial: "display_resources", collection: current_user.resources, as: :resource %>
+  <%= render partial: "display_resources", collection: current_user.resources.by_language, as: :resource %>
+</ul>
+
+<h3>Favorites</h3>
+<ul>
+  <%= render partial: "display_resources", collection: current_user.resources.favorited.by_language, as: :resource %>
 </ul>
