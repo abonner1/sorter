@@ -1,0 +1,13 @@
+<h1><%= @resource.title %></h1>
+<p>Added by <%= @resource.user_name %>.</p>
+
+<h3>Topics:</h3>
+<ul>
+  <% @resource.topics.each do |topic| %>
+    <li><%= topic.name %></li>
+  <% end %>
+</ul>
+<p>URL: <%= link_to "http://#{@resource.url}", "http://#{@resource.url}" %></p>
+
+<h3>What it's about:</h3>
+<p><%= @resource.description %></p>
