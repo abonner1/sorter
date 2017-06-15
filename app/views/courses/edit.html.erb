@@ -1,0 +1,5 @@
+<h1>Edit a Course</h1>
+<%= form_for @course do |f| %>
+  <%= render partial: 'form', locals: {f: f} %>
+  <%= f.submit %>
+<% end %>
