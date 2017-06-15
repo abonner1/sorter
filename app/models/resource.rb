@@ -8,6 +8,7 @@ class Resource < ApplicationRecord
 
   validates :title, presence: true
   validates :url, presence: true
+  validates :url, uniqueness: true
 
   scope :by_language, -> {includes(:language).order("languages.name ASC")}
   scope :favorited, -> {where(favorited: true)}
@@ -26,5 +27,9 @@ class Resource < ApplicationRecord
     topics_attributes.values.each do |topic_attribute|
       self.topics.find_or_initialize_by(topic_attribute) if topic_attribute[:name].present?
     end
+  end
+
+  def add_course(course_id)
+    self.courses << Course.find_by(id: course_id)
   end
 end
