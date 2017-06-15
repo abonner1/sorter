@@ -1,0 +1,8 @@
+<h1><%= @course.title %></h1>
+
+<h3>Languages:</h3>
+<ul>
+  <%= render partial: "/languages/display_languages", collection: @course.languages, as: :language %>
+</ul>
+
+<p><%= @course.description %></p>
