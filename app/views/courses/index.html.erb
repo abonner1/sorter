@@ -1,0 +1,9 @@
+<h1>Courses</h1>
+<ul>
+  <% @courses.each do |course| %>
+    <li><%= link_to course.title, course_path(course) %></li>
+    <ul>
+      <% render partial: "/languages/display_languages", collection: course.languages, as: :language %>
+    </ul>
+  <% end %>
+</ul>
