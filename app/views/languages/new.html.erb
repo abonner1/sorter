@@ -1,0 +1,5 @@
+<h1>Add a New Language</h1>
+<%= form_for @language do |f| %>
+  <%= render partial: "form", locals: {f: f} %>
+  <%= f.submit %>
+<% end %>
