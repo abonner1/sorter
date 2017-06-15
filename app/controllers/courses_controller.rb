@@ -6,9 +6,12 @@ class CoursesController < ApplicationController
   end
 
   def new
+    @course = Course.new
   end
 
   def create
+    @course = Course.create(course_params)
+    redirect_to course_path(@course)
   end
 
   def show
@@ -18,6 +21,8 @@ class CoursesController < ApplicationController
   end
 
   def update
+    @course.update(course_params)
+    redirect_to course_path(@course)
   end
 
   def destroy
@@ -29,6 +34,10 @@ class CoursesController < ApplicationController
 
     def set_course
       @course = Course.find_by(id: params[:id])
+    end
+
+    def course_params
+      params.require(:course).permit(:title, :description, language_ids: [], user_ids: [])
     end
 
 end
