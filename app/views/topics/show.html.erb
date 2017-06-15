@@ -1,0 +1,7 @@
+<h1><%= @topic.name %></h1>
+<h3>Resources with this topic:</h3>
+<ul>
+  <% @topic.resources.each do |resource| %>
+    <li><%= link_to resource.title, resource_path(resource) %></li>
+  <% end %>
+</ul>

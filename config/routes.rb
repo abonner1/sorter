@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   end
 
   resources :resources
+
+  get '/topics/:id', to: 'topics#show'
 end
