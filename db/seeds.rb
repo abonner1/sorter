@@ -1,11 +1,9 @@
 first_user = User.create(
-      name: "Andrew",
       username: "andyb000",
       email: "andyb000@gmail.com",
       password: "password")
 
 second_user = User.create(
-      name: "Avi",
       username: "aviflombaum",
       email: "aviflombaum@flatiron.com",
       password: "password")

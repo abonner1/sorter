@@ -8,7 +8,6 @@ RSpec.describe User, type: :model do
   describe "username" do
     it "is unique" do
       User.create(
-            name: "Avi",
             username: "aviflombaum",
             email: "aviflombaum2@flatiron.com",
             password: "password")
@@ -17,7 +16,6 @@ RSpec.describe User, type: :model do
 
     it "validates user when present" do
       @user.username = nil
-      @user.name = nil
       expect(@user).not_to be_valid
     end
   end
