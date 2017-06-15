@@ -6,4 +6,7 @@ class Resource < ApplicationRecord
 
   validates :title, presence: true
   validates :url, presence: true
+
+  scope :by_language, -> {includes(:language).order("languages.name ASC")}
+  scope :favorited, -> {where(favorited: true)}
 end
