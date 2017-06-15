@@ -6,9 +6,12 @@ class ResourcesController < ApplicationController
   end
 
   def new
+    @resource = Resource.new
   end
 
   def create
+    @resource = Resource.create(resource_params)
+    redirect_to root_path
   end
 
   def show
@@ -28,7 +31,11 @@ class ResourcesController < ApplicationController
   private
 
     def set_resource
-      @resource = Resource.find_by(params[:id])
+      @resource = Resource.find_by(id: params[:id])
+    end
+
+    def resource_params
+      params.require(:resource).permit(:title, :url, :description, :language_id, :user_id, :topic_ids => [], :topics_attributes => [:name])
     end
 
 end
