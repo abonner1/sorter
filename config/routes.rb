@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :resources
 
   get '/topics/:id', to: 'topics#show', as: "topic"
+
+  resources :languages, only: [:new, :create, :show, :destroy]
 end
