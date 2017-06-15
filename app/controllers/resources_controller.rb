@@ -25,7 +25,7 @@ class ResourcesController < ApplicationController
   end
 
   def update
-    if @resource.update(resource_params)
+    if @resource.update(resource_params) && current_user == @resource.user
       redirect_to resource_path(@resource)
     else
       flash[:error] = @resource.errors.full_messages
