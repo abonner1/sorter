@@ -1,4 +1,5 @@
 class ResourcesController < ApplicationController
+  before_action :set_resource, only: [:show, :edit, :update, :destroy]
 
   def index
     @resources = Resource.all
@@ -21,5 +22,11 @@ class ResourcesController < ApplicationController
 
   def destroy
   end
+
+  private
+
+    def set_resource
+      @resource = Resource.find_by(params[:id])
+    end
 
 end
