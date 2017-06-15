@@ -1,6 +1,4 @@
 <h1>Your Resources</h1>
 <ul>
-  <% current_user.resources.each do |resource| %>
-    <li><%= link_to resource.title, resource_path(resource) %></li>
-  <% end %>
+  <%= render partial: "display_resources", collection: current_user.resources, as: :resource %>
 </ul>
