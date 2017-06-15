@@ -11,7 +11,8 @@ class ResourcesController < ApplicationController
   def create
     @resource = Resource.new(resource_params)
     if @resource.save
-      render root_path
+      @resource.add_course(params[:resource][:course_id]) if params[:resource][:course_id].present?
+      redirect_to root_path
     else
       flash[:error] = @resource.errors.full_messages
       redirect_to new_resource_path
@@ -25,7 +26,7 @@ class ResourcesController < ApplicationController
   end
 
   def update
-    if @resource.update(resource_params) && current_user == @resource.user
+    if @resource.update(resource_params) && correct_user
       redirect_to resource_path(@resource)
     else
       flash[:error] = @resource.errors.full_messages
@@ -34,7 +35,9 @@ class ResourcesController < ApplicationController
   end
 
   def destroy
-    @resource.destroy
+    if correct_user
+      @resource.destroy
+    end
     redirect_to root_path
   end
 
