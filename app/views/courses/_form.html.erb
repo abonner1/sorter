@@ -1,0 +1,8 @@
+<%= f.label "Title:" %>
+<%= f.text_field :title %><br />
+<%= f.label "Description:" %>
+<%= f.text_area :description %><br />
+<%= f.label "Select programming languages:" %>
+<%= f.collection_check_boxes :language_ids, Language.all, :id, :name%><br />
+<%= f.label "Add students to course:" %>
+<%= f.collection_check_boxes :user_ids, User.all, :id, :username %><br />
