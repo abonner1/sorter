@@ -21,6 +21,6 @@ RSpec.describe User, type: :model do
   end
 
   it "has many resources" do
-    expect(@user.resources.count).to eq(1)
+    expect(@user.resources.first).to be_a(Resource)
   end
 end

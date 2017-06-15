@@ -15,7 +15,7 @@ RSpec.describe Language, type: :model do
   end
 
   it "has many resources" do
-    @language.resources.build
+    @language.resources << Resource.first
     expect(@language.resources.count).to eq(1)
   end
 
