@@ -10,8 +10,13 @@ class ResourcesController < ApplicationController
   end
 
   def create
-    @resource = Resource.create(resource_params)
-    redirect_to root_path
+    @resource = Resource.new(resource_params)
+    if @resource.save
+      render root_path
+    else
+      flash[:error] = @resource.errors.full_messages
+      redirect_to new_resource_path
+    end
   end
 
   def show
@@ -21,6 +26,12 @@ class ResourcesController < ApplicationController
   end
 
   def update
+    if @resource.update(resource_params)
+      render resource_path(@resource)
+    else
+      flash[:error] = @resource.errors.full_messages
+      redirect_to edit_resource_path(@resource)
+    end
   end
 
   def destroy
