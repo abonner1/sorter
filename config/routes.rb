@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   resources :languages, only: [:new, :create, :show, :destroy]
 
   resources :courses do
-    resources :resources
+    resources :resources, only: [:new]
   end
 end
