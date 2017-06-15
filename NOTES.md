@@ -22,7 +22,6 @@ Topic [name]
 Language [name]
 - has_many resources
 
-EXTRA RELATIONS:
 EnrolledCourses [user_id, course_id]
 - belongs_to user
 - belongs_to course
