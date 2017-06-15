@@ -9,4 +9,8 @@ class Resource < ApplicationRecord
 
   scope :by_language, -> {includes(:language).order("languages.name ASC")}
   scope :favorited, -> {where(favorited: true)}
+
+  def user_name
+    self.user.username
+  end
 end
