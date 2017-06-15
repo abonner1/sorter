@@ -1,5 +1,6 @@
 <h1>Edit a Resource</h1>
 <%= form_for @resource do |f| %>
   <%= render partial: 'form', locals: {f: f} %>
+  <%= render partial: 'favorite', locals: {f: f} %>
   <%= f.submit %>
 <% end %>

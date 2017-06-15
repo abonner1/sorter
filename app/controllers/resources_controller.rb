@@ -26,7 +26,7 @@ class ResourcesController < ApplicationController
 
   def update
     if @resource.update(resource_params)
-      render resource_path(@resource)
+      redirect_to resource_path(@resource)
     else
       flash[:error] = @resource.errors.full_messages
       redirect_to edit_resource_path(@resource)
@@ -45,7 +45,7 @@ class ResourcesController < ApplicationController
     end
 
     def resource_params
-      params.require(:resource).permit(:title, :url, :description, :language_id, :user_id, :topic_ids => [], :topics_attributes => [:name])
+      params.require(:resource).permit(:title, :url, :description, :language_id, :user_id, :favorited, :topic_ids => [], :topics_attributes => [:name])
     end
 
 end

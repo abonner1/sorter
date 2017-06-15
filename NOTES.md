@@ -11,7 +11,7 @@ Resource [title, url, description, user_id, language_id]
 - has_many course_resources
 - has_many courses, through: course_resources
 
-ResourceTopics [resource_id, topic_id, creator]
+ResourceTopics [resource_id, topic_id]
 - belongs_to resource
 - belongs_to topic
 
