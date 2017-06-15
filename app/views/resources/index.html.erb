@@ -1,10 +1,6 @@
-<h1>Welcome to Sorter!</h1>
-<p>The perfect place to organize all your web resources on anything coding. And see what others are learning.</p>
-
-<% if user_signed_in? %>
-  <ul>
-    <% @resources.each do |resource| %>
-      <li><%= link_to resource.title, resource_path(resource) %></li>
-    <% end %>
-  </ul>
-<% end %>
+<h1>Your Resources</h1>
+<ul>
+  <% current_user.resources.each do |resource| %>
+    <li><%= link_to resource.title, resource_path(resource) %></li>
+  <% end %>
+</ul>
