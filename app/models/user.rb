@@ -5,6 +5,8 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: [:github]
 
   has_many :resources
+  has_many :enrolled_courses
+  has_many :courses, through: :enrolled_courses
 
   validates :username, presence: true
   validates :username, uniqueness: true
