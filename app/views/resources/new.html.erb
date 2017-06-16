@@ -1,6 +1,6 @@
 <h1>Add a New Resource</h1>
 
-<%= render 'error_messages' %>
+<%= render '/layouts/error_messages' %>
 
 <%= form_for @resource do |f| %>
   <%= render partial: 'form', locals: {f: f} %>
