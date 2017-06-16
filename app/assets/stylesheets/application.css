@@ -18,8 +18,18 @@
   color: red;
 }
 
-div.field_with_errors input {
+div.field_with_errors input, div.field_with_errors textarea {
   border-style: solid;
   border-width: 1px;
   border-color: red;
+}
+
+.resource_check_boxes input {
+  display: block;
+  float: left;
+}
+
+.resource_check_boxes label {
+  display: block;
+  float right;
 }
