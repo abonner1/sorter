@@ -1,13 +1,22 @@
 class LanguagesController < ApplicationController
   before_action :set_language, only: [:show, :destroy]
 
+  def index
+    @languages = Language.all
+  end
+
   def new
     @language = Language.new
   end
 
   def create
-    @language = Language.create(language_params)
-    redirect_to(@language)
+    @language = Language.new(language_params)
+    if @language.save
+      redirect_to(@language)
+    else
+      flash[:error] = @language.errors.full_messages
+      render new_language_path
+    end
   end
 
   def show
