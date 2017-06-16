@@ -10,8 +10,13 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.create(course_params)
-    redirect_to course_path(@course)
+    @course = Course.new(course_params)
+    if @course.save
+      redirect_to course_path(@course)
+    else
+      flash[:error] = @course.errors.full_messages
+      render new_course_path
+    end
   end
 
   def show
@@ -21,8 +26,13 @@ class CoursesController < ApplicationController
   end
 
   def update
-    @course.update(course_params)
-    redirect_to course_path(@course)
+    if @course.update(course_params)
+      redirect_to course_path(@course)
+    else
+      flash[:error] = @course.errors.full_messages
+      render :edit
+    end
+
   end
 
   def destroy
@@ -37,7 +47,7 @@ class CoursesController < ApplicationController
     end
 
     def course_params
-      params.require(:course).permit(:title, :description, language_ids: [], user_ids: [])
+      params.require(:course).permit(:title, :description, language_ids: [], user_ids: [], :resource_ids => [])
     end
 
 end
