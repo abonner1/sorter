@@ -10,6 +10,7 @@ class ResourcesController < ApplicationController
 
   def create
     @resource = Resource.new(resource_params)
+    @resource.add_user
     if @resource.save
       redirect_to root_path
     else
@@ -22,6 +23,10 @@ class ResourcesController < ApplicationController
   end
 
   def edit
+    if !correct_user
+      flash[:alert] = "You are not allowed to edit this resource!"
+      redirect_to resource_path(@resource)
+    end
   end
 
   def update
@@ -46,7 +51,7 @@ class ResourcesController < ApplicationController
 
     def resource_params
       params.require(:resource).permit(:title, :url, :description, :language_id,
-      :user_id, :favorited, :course_ids => [], :topic_ids => [],
+      :favorited, :course_ids => [], :topic_ids => [],
       :topics_attributes => [:name])
     end
 
