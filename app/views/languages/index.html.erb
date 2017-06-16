@@ -1,0 +1,7 @@
+<h1>Languages</h1>
+
+<%= link_to "Add Language", new_language_path %>
+
+<ul>
+  <%= render partial: 'display_languages', collection: @languages, as: :language %>
+</ul>
