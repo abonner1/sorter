@@ -11,6 +11,5 @@
 <%= f.fields_for :topics, @resource.topics.build do |topic_fields| %>
   <%= topic_fields.label "Or add a new topic:" %>
   <%= topic_fields.text_field :name %>
-<% end %><br />
-<%= f.hidden_field(:user_id, value: current_user.id) %>
+<% end %><br / />
 <%= f.collection_check_boxes :course_ids, Course.all, :id, :title%><br />
