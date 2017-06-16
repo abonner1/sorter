@@ -3,8 +3,8 @@
     <li><%= link_to "Home", root_path %></li>
     <% if user_signed_in? %>
       <li><%= link_to "Add Resource", new_resource_path %></li>
-      <li><%= link_to "Add Language", new_language_path %></li>
-      <li><%= link_to "Add Course", new_course_path %></li>
+      <li><%= link_to "Languages", languages_path %></li>
+      <li><%= link_to "Courses", courses_path %></li>
       <li><%= link_to "Log out", destroy_user_session_path, method: 'delete' %></li>
     <% else %>
       <li><%= link_to "Sign in", new_user_session_path %></li>
