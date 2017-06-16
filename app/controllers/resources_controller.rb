@@ -5,13 +5,12 @@ class ResourcesController < ApplicationController
   end
 
   def new
-    @resource = Resource.new
+    params[:course_id] ? @resource = Resource.new(course_ids: params[:course_id]) : @resource = Resource.new
   end
 
   def create
     @resource = Resource.new(resource_params)
     if @resource.save
-      @resource.add_course(params[:resource][:course_id]) if params[:resource][:course_id].present?
       redirect_to root_path
     else
       flash[:error] = @resource.errors.full_messages
@@ -48,7 +47,7 @@ class ResourcesController < ApplicationController
     end
 
     def resource_params
-      params.require(:resource).permit(:title, :url, :description, :language_id, :user_id, :favorited, :topic_ids => [], :topics_attributes => [:name])
+      params.require(:resource).permit(:title, :url, :description, :language_id, :user_id, :favorited, :course_ids => [], :topic_ids => [], :topics_attributes => [:name])
     end
 
 end

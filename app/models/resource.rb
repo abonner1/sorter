@@ -28,8 +28,4 @@ class Resource < ApplicationRecord
       self.topics.find_or_initialize_by(topic_attribute) if topic_attribute[:name].present?
     end
   end
-
-  def add_course(course_id)
-    self.courses << Course.find_by(id: course_id)
-  end
 end
