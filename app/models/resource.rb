@@ -23,7 +23,7 @@ class Resource < ApplicationRecord
     self.language.name
   end
 
-  def add_user
+  def add_user(current_user)
     self.user = current_user
   end
 
