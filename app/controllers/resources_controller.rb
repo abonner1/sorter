@@ -10,7 +10,7 @@ class ResourcesController < ApplicationController
 
   def create
     @resource = Resource.new(resource_params)
-    @resource.add_user
+    @resource.add_user(current_user)
     if @resource.save
       redirect_to root_path
     else
