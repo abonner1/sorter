@@ -1,5 +1,7 @@
 <h1><%= @resource.title %></h1>
-<p>Added by <%= @resource.user_name %>.</p>
+<% if @resource.user %>
+  <p>Added by <%= @resource.user_name %>.</p>
+<% end %>
 
 <p><%= @resource.language_name %></p>
 
@@ -14,5 +16,5 @@
 <h3>What it's about:</h3>
 <p><%= @resource.description %></p>
 
-<%= link_to "Edit this Resource", edit_resource_path(@resource) if correct_user %>
-<%= button_to "Delete this Resource", resource_path(@resource), method: 'delete' if correct_user%>
+<%= link_to "Edit this Resource", edit_resource_path(@resource) if correct_user? %>
+<%= button_to "Delete this Resource", resource_path(@resource), method: 'delete' if correct_user?%>
