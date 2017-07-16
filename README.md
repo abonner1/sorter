@@ -1,6 +1,6 @@
 # Sorter - Coding Resource Manager
 
-Sorter - Group Project Manager is a Web App, with a Rails back-end, to help aspiring coders store and organize their coding resources based on the language they are studying. There is also course functionality for online coding schools to organize resources by class.
+Sorter - Coding Resource Manager is a Web App, with a Rails back-end, to help aspiring coders store and organize their coding resources based on the language they are studying. There is also course functionality for online coding schools to organize resources by class.
 
 You can:
 
