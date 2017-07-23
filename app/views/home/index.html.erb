@@ -1,0 +1,18 @@
+<h1>Welcome to Sorter!</h1>
+<p>The perfect place to organize all your web resources on anything coding. And see what others are learning.</p>
+
+<% if user_signed_in? %>
+<h3>Here's what people have been reading:</h3>
+  <ul>
+    <% @resources.by_language.each do |resource| %>
+      <li><%= link_to resource.title, resource_path(resource) %> - <%= link_to resource.language_name, language_path(resource.language) %></li>
+      <ul>
+        <% resource.topics.each do |topic| %>
+          <li><%= link_to "##{topic.name}", topic_path(topic) %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= link_to "Sign in with GitHub", user_github_omniauth_authorize_path if !user_signed_in?%>
