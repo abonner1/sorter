@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :resources
   has_many :enrolled_courses
   has_many :courses, through: :enrolled_courses
+  has_many :user_comments
+  has_many :comments
 
   validates :username, presence: true
   validates :username, uniqueness: true

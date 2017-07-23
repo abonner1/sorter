@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   resources :courses do
     resources :resources, only: [:new]
   end
+
+  resources :comments, only: [:new, :create, :edit, :update]
+
 end
