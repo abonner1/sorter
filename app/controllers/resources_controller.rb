@@ -52,8 +52,7 @@ class ResourcesController < ApplicationController
 
     def resource_params
       params.require(:resource).permit(:title, :url, :description, :language_id,
-      :favorited, :course_ids => [], :topic_ids => [],
-      :topics_attributes => [:name])
+      :favorited, :topic_ids => [], :topics_attributes => [:name])
     end
 
 end
