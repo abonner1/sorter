@@ -43,11 +43,6 @@ RSpec.describe Resource, type: :model do
     it "belongs to a language" do
       expect(@resource.language).to be_a(Language)
     end
-
-    it "has courses" do
-      @resource.courses.create
-      expect(@resource.courses.count).to eq(1)
-    end
   end
 
 end
