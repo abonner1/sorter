@@ -20,6 +20,7 @@ class ResourcesController < ApplicationController
   end
 
   def show
+    render json: @resource
   end
 
   def edit
