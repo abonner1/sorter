@@ -5,7 +5,8 @@ class ResourcesController < ApplicationController
   end
 
   def new
-    params[:course_id] ? @resource = Resource.new(course_ids: params[:course_id]) : @resource = Resource.new
+    @user = current_user
+    @resource = Resource.new
   end
 
   def create
@@ -15,27 +16,27 @@ class ResourcesController < ApplicationController
       redirect_to root_path
     else
       flash[:error] = @resource.errors.full_messages
-      render new_resource_path
+      redirect_to new_user_resource_path
     end
   end
 
   def show
-    render json: @resource
   end
 
   def edit
     if !correct_user?
       flash[:alert] = "You are not allowed to edit this resource!"
-      redirect_to resource_path(@resource)
+      redirect_to user_resource_path(@resource)
     end
+    @user = current_user
   end
 
   def update
     if @resource.update(resource_params) && correct_user?
-      redirect_to resource_path(@resource)
+      redirect_to user_resource_path(@resource)
     else
       flash[:error] = @resource.errors.full_messages
-      render :edit
+      redirect_to edit_user_resource_path(@resource)
     end
   end
 
