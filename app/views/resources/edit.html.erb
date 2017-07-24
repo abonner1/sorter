@@ -2,7 +2,7 @@
 
 <%= render '/layouts/error_messages' %>
 
-<%= form_for @resource do |f| %>
+<%= form_for [@user, @resource] do |f| %>
   <%= render partial: 'form', locals: {f: f} %>
   <%= render partial: 'favorite', locals: {f: f} %>
   <%= f.submit %>
