@@ -3,8 +3,6 @@ class Resource < ApplicationRecord
   belongs_to :language
   has_many :resource_topics
   has_many :topics, through: :resource_topics
-  has_many :course_resources
-  has_many :courses, through: :course_resources
   has_many :resource_comments
   has_many :comments, through: :resource_comments
 

@@ -5,8 +5,6 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: [:github]
 
   has_many :resources
-  has_many :enrolled_courses
-  has_many :courses, through: :enrolled_courses
   has_many :user_comments
   has_many :comments
 
