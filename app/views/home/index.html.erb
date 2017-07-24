@@ -3,7 +3,7 @@
 
 <% if user_signed_in? %>
 <h3>Here's what people have been reading:</h3>
-  <ul>
+  <ul id="resources">
     <% @resources.by_language.each do |resource| %>
       <li><%= link_to resource.title, resource_path(resource) %> - <%= link_to resource.language_name, language_path(resource.language) %></li>
       <ul>
