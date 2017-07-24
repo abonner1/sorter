@@ -12,10 +12,6 @@ Rails.application.routes.draw do
 
   resources :languages, only: [:index, :new, :create, :show, :destroy]
 
-  resources :courses do
-    resources :resources, only: [:new]
-  end
-
   resources :comments, only: [:new, :create, :edit, :update]
 
 end
