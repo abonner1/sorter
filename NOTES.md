@@ -7,20 +7,19 @@ User [name, username, email, password, provider, uid]
 Resource [title, url, description, user_id, language_id]
 - belongs_to user
 - belongs_to language
-- has_many resource_topics
-- has_many topics, through: resource_topics
+- has_many resource_tags
+- has_many tags, through: resource_tags
 - has_many course_resources
 - has_many courses, through: course_resources
-- has_many resource_comments
-- has_many comments, through resource_comments
+- has_many comments
 
-ResourceTopics [resource_id, topic_id]
+ResourceTags [resource_id, tag_id]
 - belongs_to resource
-- belongs_to topic
+- belongs_to tag
 
-Topic [name]
-- has_many resource_topics
-- has_many resources, through resource_topics
+Tag [name]
+- has_many resource_tags
+- has_many resources, through resource_tags
 
 Language [name]
 - has_many resources
@@ -37,11 +36,6 @@ CourseResources [course_id, resource_id]
 - has_many course_resources
 - has_many resources, through: course_resources
 
-Comment
-- has_many resource_comments
-- has_many resources, through resource_comments
-- belongs_to user
-
-ResourceComments
-- belongs_to Comment
+Comment [content, user_id, resource_id]
 - belongs_to resource
+- belongs_to user
