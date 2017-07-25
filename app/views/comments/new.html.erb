@@ -1,5 +1,5 @@
-<h1>Add a Comment</h1>
-
+<h3>Add New Comment:</h1>
+<%= render 'layouts/error_messages' %>
 <%= form_for [@resource, @comment] do |f| %>
   <%= render partial: 'comments/form', locals: {f: f} %>
   <%= f.submit %>
