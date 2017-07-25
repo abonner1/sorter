@@ -6,9 +6,9 @@
 <%= f.text_area :description %><br />
 <%= f.label "Select programming language:" %>
 <%= f.collection_select(:language_id, Language.all, :id, :name, {:include_blank => "Please select"})%><br  />
-<%= f.label "Topics it covers:" %>
-<%= f.collection_check_boxes :topic_ids, Topic.all, :id, :name%><br />
-<%= f.fields_for :topics, @resource.topics.build do |topic_fields| %>
-  <%= topic_fields.label "Or add a new topic:" %>
-  <%= topic_fields.text_field :name %>
-<% end %><br />
+<!-- <%= f.label "Tags:" %>
+<%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name%><br />
+<%= f.fields_for :tags, @resource.tags.build do |tag_fields| %>
+  <%= tag_fields.label "Or add a new topic:" %>
+  <%= tag_fields.text_field :name %>
+<% end %><br /> -->
