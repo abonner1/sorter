@@ -25,14 +25,14 @@ class ResourcesController < ApplicationController
   end
 
   def edit
-    if !correct_user?
+    if !correct_user?(@resource)
       flash[:alert] = "You are not allowed to edit this resource!"
       redirect_to resource_path(@resource)
     end
   end
 
   def update
-    if @resource.update(resource_params) && correct_user?
+    if @resource.update(resource_params) && correct_user?(@resource)
       redirect_to resource_path(@resource)
     else
       flash[:error] = @resource.errors.full_messages
@@ -41,7 +41,7 @@ class ResourcesController < ApplicationController
   end
 
   def destroy
-    @resource.destroy if correct_user?
+    @resource.destroy if correct_user?(@resource)
     redirect_to root_path
   end
 
