@@ -32,7 +32,7 @@
   <ul>
     <% @resource.comments.each do |comment| %>
       <% if comment.content.present? %>
-      <li><%= comment.content %> <%= button_to "X", comment_path(comment), method: 'delete' if correct_user? %> </li>
+      <li><%= comment.content %> - <%= link_to "Edit", edit_comment_path(comment) if correct_user? %> <%= button_to "X", comment_path(comment), method: 'delete' if correct_user? %> </li>
       <% end %>
     <% end %>
   </ul>
