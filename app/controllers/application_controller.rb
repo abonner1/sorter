@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :correct_user?
 
-  def correct_user?
-    !!(current_user == @resource.user)
+  def correct_user?(object)
+    current_user == object.user
   end
 
   protected
