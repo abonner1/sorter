@@ -1,5 +1,5 @@
 class ResourcesController < ApplicationController
-  before_action :set_user, only: [:index, :edit, :create]
+  before_action :set_user, only: [:index, :new, :create]
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
 
   def index
