@@ -1,4 +1,7 @@
 <h1><%= @language.name %></h1>
+
+<p><%= @language.description %></p>
+
 <h3>Resources:</h3>
 <ul>
   <%= render partial: "/resources/display_resources", collection: @language.resources, as: :resource %>
