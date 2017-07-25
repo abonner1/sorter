@@ -21,6 +21,18 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    if !@comment.user == current_user
+      redirect_to resource_path(@comment.resource)
+    end
+  end
+
+  def update
+    if @comment.update(comment_params) && @comment.user == current_user
+      redirect_to resource_path(@comment.resource)
+    else
+      flash[:error] = @comment.errors.full_messages
+      redirect_to edit_comment_path(@comment)
+    end
   end
 
   def destroy
@@ -32,7 +44,7 @@ class CommentsController < ApplicationController
   private
 
     def set_resource
-      @resource = Resource.find_by(id: params[:id])
+      @resource = Resource.find_by(id: params[:resource_id])
     end
 
     def set_comment
