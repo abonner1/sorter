@@ -3,7 +3,11 @@
   <p>Added by <%= @resource.user_name %>.</p>
 <% end %>
 
-<p><%= link_to @resource.language_name, language_path(@resource.language) %></p>
+<ul>
+  <% @resource.languages.each do |language| %>
+    <li><%= link_to language.name, language_path(language) %></li>
+  <% end %>
+</ul>
 
 <% if @resource.tags.first %>
   <h3>Tags:</h3>

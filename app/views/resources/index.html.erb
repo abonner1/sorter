@@ -1,10 +1,6 @@
 <h1>Your Resources</h1>
-
 <ul>
-  <%= render partial: "display_resources", collection: current_user.resources.by_language, as: :resource %>
-</ul>
-
-<h3>Favorites</h3>
-<ul>
-  <%= render partial: "display_resources", collection: current_user.resources.favorited.by_language, as: :resource %>
+  <% current_user.resources.each do |resource| %>
+    <li><%= link_to resource.title, resource_path(resource) %> - <%= link_to "Link", resource.url %></li>
+  <% end %>
 </ul>
