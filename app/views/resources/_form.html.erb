@@ -5,7 +5,9 @@
 <%= f.label :description %>:
 <%= f.text_area :description %><br />
 <%= f.label "Select programming language:" %>
-<%= f.collection_select(:language_id, Language.all, :id, :name, {:include_blank => "Please select"})%><br  />
+<%= f.collection_check_boxes :language_ids, Language.all, :id, :name%><br  />
+
+<!-- (:language_id, Language.all, :id, :name, {:include_blank => "Please select"}) -->
 <!-- <%= f.label "Tags:" %>
 <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name%><br />
 <%= f.fields_for :tags, @resource.tags.build do |tag_fields| %>
