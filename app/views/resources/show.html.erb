@@ -23,16 +23,21 @@
 <h3>What it's about:</h3>
 <p><%= @resource.description %></p>
 
-
-<%= link_to "Edit this Resource", edit_resource_path(@resource) if correct_user? %>
-<%= button_to "Delete this Resource", resource_path(@resource), method: 'delete' if correct_user?%>
+<% if correct_user?(@resource) %>
+  <%= link_to "Edit this Resource", edit_resource_path(@resource) %>
+  <%= button_to "Delete this Resource", resource_path(@resource), method: 'delete' %>
+<% end %>
 
 <% if @resource.comments.first.content.present? %>
   <h3>Comments:</h3>
   <ul>
     <% @resource.comments.each do |comment| %>
       <% if comment.content.present? %>
-      <li><%= comment.content %> - <%= link_to "Edit", edit_comment_path(comment) if correct_user? %> <%= button_to "X", comment_path(comment), method: 'delete' if correct_user? %> </li>
+      <li><%= comment.content %>
+        <% if correct_user?(comment) %>
+         - <%= link_to "Edit", edit_comment_path(comment)%> <%= button_to "X", comment_path(comment), method: 'delete'%>
+         <% end %>
+      </li>
       <% end %>
     <% end %>
   </ul>
