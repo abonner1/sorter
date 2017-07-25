@@ -5,7 +5,6 @@ class CreateResources < ActiveRecord::Migration[5.1]
       t.string :url
       t.text :description
       t.integer :user_id
-      t.integer :language_id
 
       t.timestamps
     end

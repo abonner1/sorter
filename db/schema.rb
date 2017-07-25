@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170628141709) do
+ActiveRecord::Schema.define(version: 20170725164231) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -26,6 +26,11 @@ ActiveRecord::Schema.define(version: 20170628141709) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "resource_languages", force: :cascade do |t|
+    t.integer "resource_id"
+    t.integer "language_id"
+  end
+
   create_table "resource_tags", force: :cascade do |t|
     t.integer "resource_id"
     t.integer "tag_id"
@@ -38,7 +43,6 @@ ActiveRecord::Schema.define(version: 20170628141709) do
     t.string "url"
     t.text "description"
     t.integer "user_id"
-    t.integer "language_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "favorited", default: false

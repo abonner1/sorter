@@ -1,6 +1,7 @@
 class Resource < ApplicationRecord
   belongs_to :user
-  belongs_to :language
+  has_many :resource_languages
+  has_many :languages, through: :resource_languages
   has_many :resource_tags
   has_many :tags, through: :resource_tags
   has_many :comments
