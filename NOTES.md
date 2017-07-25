@@ -17,7 +17,7 @@ Tag [name]
 - has_many resource_tags
 - has_many resources, through resource_tags
 
-Language [name]
+Language [name, description]
 - has_many resources
 
 ResourceLanguage [language_id, resource_id]
