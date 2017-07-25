@@ -5,11 +5,11 @@
 
 <p><%= link_to @resource.language_name, language_path(@resource.language) %></p>
 
-<% if @resource.topics.first %>
-  <h3>Topics:</h3>
+<% if @resource.tags.first %>
+  <h3>Tags:</h3>
   <ul>
-    <% @resource.topics.each do |topic| %>
-      <li><%= topic.name %></li>
+    <% @resource.tags.each do |tag| %>
+      <li><%= tag.name %></li>
     <% end %>
   </ul>
 <% end %>
