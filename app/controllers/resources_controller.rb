@@ -3,6 +3,8 @@ class ResourcesController < ApplicationController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
 
   def index
+    @resources = @user.resources
+    render json: @resources
   end
 
   def new
