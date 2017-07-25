@@ -1,1 +1,7 @@
-<li><%= link_to resource.title, resource_path(resource) %> - <%= link_to resource.language_name, language_path(resource.language) %></li>
+<li><%= link_to resource.title, resource_path(resource) %>
+  <ul>
+    <% resource.languages.each do |language| %>
+      <li><%= link_to language.name, language_path(language) %></li>
+    <% end %>
+  </ul>
+</li>
