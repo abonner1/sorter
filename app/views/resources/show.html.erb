@@ -3,14 +3,17 @@
   <p>Added by <%= @resource.user_name %>.</p>
 <% end %>
 
-<p><%= @resource.language_name %></p>
+<p><%= link_to @resource.language_name, language_path(@resource.language) %></p>
 
-<h3>Topics:</h3>
-<ul>
-  <% @resource.topics.each do |topic| %>
-    <li><%= topic.name %></li>
-  <% end %>
-</ul>
+<% if @resource.topics.first %>
+  <h3>Topics:</h3>
+  <ul>
+    <% @resource.topics.each do |topic| %>
+      <li><%= topic.name %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <p>URL: <%= link_to @resource.url, @resource.url %></p>
 
 <h3>What it's about:</h3>
@@ -19,3 +22,5 @@
 
 <%= link_to "Edit this Resource", edit_resource_path(@resource) if correct_user? %>
 <%= button_to "Delete this Resource", resource_path(@resource), method: 'delete' if correct_user?%>
+
+<%= render template: "comments/new" %>
