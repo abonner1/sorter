@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
   def show
-    @topic = Tag.find_by(id: params[:id])
+    @tag = Tag.find_by(id: params[:id])
   end
 end
