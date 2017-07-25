@@ -7,8 +7,8 @@
     <% @resources.by_language.each do |resource| %>
       <li><%= link_to resource.title, resource_path(resource) %> - <%= link_to resource.language_name, language_path(resource.language) %></li>
       <ul>
-        <% resource.topics.each do |topic| %>
-          <li><%= link_to "##{topic.name}", topic_path(topic) %></li>
+        <% resource.tags.each do |tag| %>
+          <li><%= link_to "##{tag.name}", tag_path(tag) %></li>
         <% end %>
       </ul>
     <% end %>
