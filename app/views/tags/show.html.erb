@@ -5,3 +5,5 @@
     <li><%= link_to resource.title, resource_path(resource) %></li>
   <% end %>
 </ul>
+
+<%= button_to "Delete", tag_path(@tag), method: "delete" %>
