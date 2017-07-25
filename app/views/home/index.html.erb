@@ -4,13 +4,19 @@
 <% if user_signed_in? %>
 <h3>Here's what people have been reading:</h3>
   <ul id="resources">
-    <% @resources.by_language.each do |resource| %>
-      <li><%= link_to resource.title, resource_path(resource) %> - <%= link_to resource.language_name, language_path(resource.language) %></li>
-      <ul>
-        <% resource.tags.each do |tag| %>
-          <li><%= link_to "##{tag.name}", tag_path(tag) %></li>
-        <% end %>
-      </ul>
+    <% @resources.each do |resource| %>
+      <li><%= link_to resource.title, resource_path(resource) %> - <%= link_to "Link", resource.url %>
+        <ul>
+          <% resource.languages.each do |language| %>
+            <li><%= link_to language.name, language_path(language) %></li>
+          <% end %>
+        </ul>
+        <ul>
+          <% resource.tags.each do |tag| %>
+            <li><%= link_to "##{tag.name}", tag_path(tag) %></li>
+          <% end %>
+        </ul>
+      </li>
     <% end %>
   </ul>
 <% end %>
