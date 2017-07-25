@@ -27,13 +27,13 @@ class ResourcesController < ApplicationController
   def edit
     if !correct_user?
       flash[:alert] = "You are not allowed to edit this resource!"
-      redirect_to user_resource_path(@resource)
+      redirect_to resource_path(@resource)
     end
   end
 
   def update
     if @resource.update(resource_params) && correct_user?
-      redirect_to user_resource_path(@resource)
+      redirect_to resource_path(@resource)
     else
       flash[:error] = @resource.errors.full_messages
       redirect_to edit_resource_path(@resource)
@@ -52,8 +52,8 @@ class ResourcesController < ApplicationController
     end
 
     def resource_params
-      params.require(:resource).permit(:title, :url, :description, :language_id,
-      :favorited, :tag_ids => [], :tags_attributes => [:name])
+      params.require(:resource).permit(:title, :url, :description,
+      :favorited, :language_ids => [],  :tag_ids => [], :tags_attributes => [:name])
     end
 
 end
