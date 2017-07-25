@@ -1,12 +1,14 @@
 class CommentsController < ApplicationController
+  before_action :set_resource, only: [:index, :new, :create]
+
+  def index
+  end
 
   def new
-    @resource = Resource.find_by(id: params[:resource_id])
     @comment = @resource.comments.build
   end
 
   def create
-    @resource = Resource.find_by(id: params[:resource_id])
     @comment = @resource.comments.build(comment_params)
     @comment.user = current_user
     if @resource.save
@@ -17,6 +19,9 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def destroy
     @comment = Comment.find_by(id: params[:id])
     @resource = @comment.resource
@@ -25,6 +30,10 @@ class CommentsController < ApplicationController
   end
 
   private
+
+    def set_resource
+      @resource = Resource.find_by(id: params[:id])
+    end
 
     def comment_params
       params.require(:comment).permit(:content)
