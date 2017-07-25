@@ -27,4 +27,16 @@
 <%= link_to "Edit this Resource", edit_resource_path(@resource) if correct_user? %>
 <%= button_to "Delete this Resource", resource_path(@resource), method: 'delete' if correct_user?%>
 
+<% if @resource.comments.first.content.present? %>
+  <h3>Comments:</h3>
+  <ul>
+    <% @resource.comments.each do |comment| %>
+      <% if comment.content.present? %>
+      <li><%= comment.content %> <%= button_to "X", comment_path(comment), method: 'delete' if correct_user? %> </li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
+
+
 <%= render template: "comments/new" %>
