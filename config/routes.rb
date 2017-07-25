@@ -7,8 +7,8 @@ Rails.application.routes.draw do
       resources :comments, shallow: true
     end
   end
-  
+
   resources :languages, only: [:index, :new, :create, :show, :destroy]
 
-  get '/topics/:id', to: 'topics#show', as: "topic"
+  get '/tags/:id', to: 'tags#show', as: "tag"
 end
