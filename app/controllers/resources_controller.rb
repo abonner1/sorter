@@ -28,7 +28,6 @@ class ResourcesController < ApplicationController
       flash[:alert] = "You are not allowed to edit this resource!"
       redirect_to user_resource_path(@resource)
     end
-    @user = current_user
   end
 
   def update
