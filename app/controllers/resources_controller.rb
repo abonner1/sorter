@@ -1,17 +1,17 @@
 class ResourcesController < ApplicationController
+  before_action :set_user, only: [:index, :edit, :create]
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
 
   def index
   end
 
   def new
-    @user = current_user
     @resource = Resource.new
   end
 
   def create
     @resource = Resource.new(resource_params)
-    @resource.add_user(current_user)
+    @resource.add_user(@user)
     if @resource.save
       redirect_to root_path
     else
@@ -46,6 +46,10 @@ class ResourcesController < ApplicationController
   end
 
   private
+
+    def set_user
+      @user = User.find_by(id: params[:user_id])
+    end
 
     def set_resource
       @resource = Resource.find_by(id: params[:id])
