@@ -3,8 +3,7 @@ class Resource < ApplicationRecord
   belongs_to :language
   has_many :resource_topics
   has_many :topics, through: :resource_topics
-  has_many :resource_comments
-  has_many :comments, through: :resource_comments
+  has_many :comments
 
   validates :title, presence: true
   validates :url, presence: true
