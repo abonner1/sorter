@@ -5,7 +5,6 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: [:github]
 
   has_many :resources
-  has_many :user_comments
   has_many :comments
 
   validates :username, presence: true
