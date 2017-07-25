@@ -21,6 +21,7 @@ class ResourcesController < ApplicationController
   end
 
   def show
+    @comment = @resource.comments.build
   end
 
   def edit
@@ -35,7 +36,7 @@ class ResourcesController < ApplicationController
       redirect_to user_resource_path(@resource)
     else
       flash[:error] = @resource.errors.full_messages
-      redirect_to edit_user_resource_path(@resource)
+      redirect_to edit_resource_path(@resource)
     end
   end
 
@@ -52,7 +53,7 @@ class ResourcesController < ApplicationController
 
     def resource_params
       params.require(:resource).permit(:title, :url, :description, :language_id,
-      :favorited, :topic_ids => [], :topics_attributes => [:name])
+      :favorited, :tag_ids => [], :tags_attributes => [:name])
     end
 
 end
