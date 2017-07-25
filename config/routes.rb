@@ -3,13 +3,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: "users/omniauth_callbacks"}
 
   resources :users, only: [:show] do
-    resources :resources, shallow: true
+    resources :resources, shallow: true do
+      resources :comments, shallow: true
+    end
   end
-
-  get '/topics/:id', to: 'topics#show', as: "topic"
-
+  
   resources :languages, only: [:index, :new, :create, :show, :destroy]
 
-  resources :comments, only: [:new, :create, :edit, :update]
-
+  get '/topics/:id', to: 'topics#show', as: "topic"
 end
