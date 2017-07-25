@@ -1,0 +1,6 @@
+<h1>Edit Comment</h1>
+<%= render "layouts/error_messages" %>
+<%= form_for @comment do |f| %>
+  <%= render partial: "form", locals: {f: f} %>
+  <%= f.submit %>
+<% end %>
