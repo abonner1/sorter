@@ -4,7 +4,10 @@ class ResourcesController < ApplicationController
 
   def index
     @resources = @user.resources
-    render json: @resources
+    respond_to do |f|
+      f.html {user_resources_path(@user)}
+      f.json {render json: @resources}
+    end
   end
 
   def new
