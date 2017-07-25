@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20170628141709) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "resource_topics", force: :cascade do |t|
+  create_table "resource_tags", force: :cascade do |t|
     t.integer "resource_id"
-    t.integer "topic_id"
+    t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20170628141709) do
     t.boolean "favorited", default: false
   end
 
-  create_table "topics", force: :cascade do |t|
+  create_table "tags", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
