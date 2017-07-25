@@ -14,6 +14,7 @@ class Resource < ApplicationRecord
   scope :favorited, -> {where(favorited: true)}
 
   accepts_nested_attributes_for :tags
+  accepts_nested_attributes_for :languages
 
   def user_name
     self.user.username
