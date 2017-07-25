@@ -21,13 +21,13 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    if !@comment.user == current_user
+    if !correct_user?(@comment)
       redirect_to resource_path(@comment.resource)
     end
   end
 
   def update
-    if @comment.update(comment_params) && @comment.user == current_user
+    if @comment.update(comment_params) && correct_user?(@comment)
       redirect_to resource_path(@comment.resource)
     else
       flash[:error] = @comment.errors.full_messages
@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @resource = @comment.resource
-    @comment.destroy if correct_user?
+    @comment.destroy if correct_user?(@comment)
     redirect_to resource_path(@resource)
   end
 
