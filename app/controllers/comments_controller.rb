@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_resource, only: [:index, :new, :create]
+  before_action :set_comment, only: [:edit, :update, :destroy]
 
   def index
   end
@@ -23,7 +24,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find_by(id: params[:id])
     @resource = @comment.resource
     @comment.destroy if correct_user?
     redirect_to resource_path(@resource)
@@ -33,6 +33,10 @@ class CommentsController < ApplicationController
 
     def set_resource
       @resource = Resource.find_by(id: params[:id])
+    end
+
+    def set_comment
+      @comment = Comment.find_by(id: params[:id])
     end
 
     def comment_params
