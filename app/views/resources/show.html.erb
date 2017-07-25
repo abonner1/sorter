@@ -17,5 +17,5 @@
 <p><%= @resource.description %></p>
 
 
-<%= link_to "Edit this Resource", edit_user_resource_path(current_user, @resource) if correct_user? %>
-<%= button_to "Delete this Resource", user_resource_path(current_user, @resource), method: 'delete' if correct_user?%>
+<%= link_to "Edit this Resource", edit_resource_path(@resource) if correct_user? %>
+<%= button_to "Delete this Resource", resource_path(@resource), method: 'delete' if correct_user?%>
