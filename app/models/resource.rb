@@ -1,8 +1,8 @@
 class Resource < ApplicationRecord
   belongs_to :user
   belongs_to :language
-  has_many :resource_topics
-  has_many :topics, through: :resource_topics
+  has_many :resource_tags
+  has_many :tags, through: :resource_tags
   has_many :comments
 
   validates :title, presence: true
@@ -12,7 +12,7 @@ class Resource < ApplicationRecord
   scope :by_language, -> {includes(:language).order("languages.name ASC")}
   scope :favorited, -> {where(favorited: true)}
 
-  accepts_nested_attributes_for :topics
+  accepts_nested_attributes_for :tags
 
   def user_name
     self.user.username
