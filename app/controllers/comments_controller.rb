@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
 
   def new
-    @comment = Comment.new
+    @resource = Resource.find_by(id: params[:resource_id])
+    @comment = @resource.comments.build
   end
 
 end
