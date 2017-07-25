@@ -10,6 +10,7 @@ class Resource < ApplicationRecord
   validates :url, presence: true
   validates :url, uniqueness: true
 
+  # SCOPES NO LONGER WORK
   scope :by_language, -> {includes(:language).order("languages.name ASC")}
   scope :favorited, -> {where(favorited: true)}
 
@@ -28,9 +29,9 @@ class Resource < ApplicationRecord
     self.user = current_user
   end
 
-  def topics_attributes=(topics_attributes)
-    topics_attributes.values.each do |topic_attribute|
-      self.topics.find_or_initialize_by(topic_attribute) if topic_attribute[:name].present?
+  def tags_attributes=(tags_attributes)
+    tags_attributes.values.each do |tag_attribute|
+      self.tags.find_or_initialize_by(tag_attribute) if tag_attribute[:name].present?
     end
   end
 end
