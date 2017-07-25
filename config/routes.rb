@@ -10,5 +10,6 @@ Rails.application.routes.draw do
 
   resources :languages, only: [:index, :new, :create, :show, :destroy]
 
-  get '/tags/:id', to: 'tags#show', as: "tag"
+  resources :tags, only: [:show, :destroy]
+
 end
