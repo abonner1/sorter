@@ -4,6 +4,19 @@ function Resource(attributes) {
   this.url = attributes.url
   this.description = attributes.description
   this.user_id = attributes.user_id
+  this.tags = attributes.tags
+}
+
+Resource.ready = function () {
+  Resource.assignListeners()
+}
+
+Resource.assignListeners = function () {
+  Resource.yourResourcesListener()
+}
+
+Resource.yourResourcesListener = function () {
+  $("a#js_resources").one("click", Resource.getResourcesAPI)
 }
 
 Resource.getResourcesAPI = function (e) {
@@ -13,24 +26,32 @@ Resource.getResourcesAPI = function (e) {
 }
 
 Resource.success = function (json) {
-  var $ul = $("#resource_list").empty()
-
   var resources = json.map(function (resource) {
     return new Resource(resource)
   })
+  var $ul = $("#resource_list").empty()
 
-  resources.forEach(function (resource) {
-    var li = resource.formatListItems()
-    $ul.append(li)
-  })
+  resources.forEach(Resource.renderLI)
 }
 
-Resource.error = function (response) {
-  console.log("You broke it!")
+Resource.renderLI = function (resource) {
+  var li = resource.formatListItems()
+  $("#resource_list").append(li)
 }
 
 Resource.prototype.formatListItems = function () {
-  return `<li><a href="/resources/${this.id}">${this.title}</a> - <a href="${this.url}">Link</a></li>`
+  return `
+  <li><a href="/resources/${this.id}">${this.title}</a> - <a href="${this.url}">Link</a>
+    <ul>
+      ${this.tags.map(Tag.renderLI).join("")}
+    <ul>
+  </li>`
 };
 
-$(document).on("click", "#js_resources", Resource.getResourcesAPI)
+Resource.error = function (response) {
+  console.log("You broke it!", response)
+}
+
+$(function () {
+  Resource.ready()
+})
