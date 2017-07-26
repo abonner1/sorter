@@ -14,20 +14,25 @@ Comment.prototype.renderLI = function () {
   return Comment.template(this)
 };
 
-$(document).on("submit", "form#new_comment", function (e) {
+Comment.success = function (json) {
+  var comment = new Comment(json)
+  var commentLI = comment.renderLI()
 
+  $("ul.comments-list").append(commentLI)
+}
+
+Comment.error = function (response) {
+  console.log("You broke it!", response)
+}
+
+Comment.formSubmit = function (e) {
+  e.preventDefault()
   var $form = $(this)
   var action = $form.attr("action")
   var params = $form.serialize()
 
-  $.post(action, params, function (json) {
-    var comment = new Comment(json)
-    var commentLI = comment.renderLI()
+  $.post(action, params, Comment.success, "json")
+  .error(Comment.error)
+}
 
-    $("ul.comments-list").append(commentLI)
-  }, "json")
-  .error(function (response) {
-    console.log("You broke it!", response)
-  })
-  e.preventDefault()
-})
+$(document).on("submit", "form#new_comment", Comment.formSubmit)
