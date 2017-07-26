@@ -42,7 +42,10 @@ class CommentsController < ApplicationController
   def destroy
     @resource = @comment.resource
     @comment.destroy if correct_user?(@comment)
-    redirect_to resource_path(@resource)
+    respond_to do |f|
+      f.html {redirect_to resource_path(@resource)}
+      f.json {render json: @comment}
+    end
   end
 
   private
