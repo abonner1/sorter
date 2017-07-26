@@ -46,14 +46,3 @@
 
   <%= render template: "comments/new" %>
 </div>
-
-<script id="comment-template" type="text/x-handlerbars-template">
-  <li id="comment-{{id}}">{{content}}
-     - <a href="/comments/{{id}}/edit">Edit</a>
-     <form class="button_to" method="post" action="/comments/{{id}}">
-     <input type="hidden" name="_method" value="delete">
-     <input class="destroy" type="submit" value="X">
-     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-     </form>
-  </li>
-</script>
