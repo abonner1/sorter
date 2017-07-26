@@ -21,8 +21,10 @@ class Resource < ApplicationRecord
     self.user.username
   end
 
-  def language_name
-    self.language.name
+  def language_names
+    self.languages.collect do |language|
+      language.name
+    end
   end
 
   def add_user(current_user)
