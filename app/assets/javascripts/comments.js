@@ -6,12 +6,10 @@ function Comment(attributes) {
 }
 
 Comment.ready = function () {
-  Comment.templateSource = $("#comment-template").html()
-  Comment.template = Handlebars.compile(Comment.templateSource)
   Comment.assignListeners()
 }
 
-Comment.assignListeners = function functionName() {
+Comment.assignListeners = function () {
   Comment.newCommentListener()
   Comment.destroyCommentListener()
 }
@@ -43,7 +41,15 @@ Comment.success = function (json) {
 }
 
 Comment.prototype.renderLI = function () {
-  return Comment.template(this)
+  return `
+  <li id="comment-${this.id}">${this.content}
+  - <a href="/comments/${this.id}/edit">Edit</a>
+    <form class="button_to" method="post" action="/comments/${this.id}">
+      <input type="hidden" name="_method" value="delete">
+      <input class="destroy" type="submit" value="X">
+    </form>
+  </li>
+  `
 };
 
 Comment.error = function (response) {
@@ -78,6 +84,6 @@ Comment.prototype.$li = function () {
   return $(`li#comment-${this.id}`)
 }
 
-document.addEventListener("turbolinks:load", function(event) {
+$(function () {
   Comment.ready()
-});
+})
