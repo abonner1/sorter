@@ -30,8 +30,43 @@ Comment.formSubmit = function (e) {
   .error(Comment.error)
 }
 
+Comment.newCommentListener = function () {
+  $("form#new_comment").on("submit", Comment.formSubmit)
+}
+
+Comment.destroy = function (json) {
+  var comment = new Comment(json)
+  comment.destroy()
+}
+
+Comment.prototype.$li = function () {
+  return $(`li#comment-${this.id}`)
+}
+
+Comment.prototype.destroy = function () {
+  this.$li().remove()
+}
+
+Comment.destroyCommentListener = function () {
+  $("input.destroy").on("click", function (e) {
+    e.preventDefault()
+    var $form = $(this).parent("form")
+    var action = $form.attr("action")
+    var params = $form.serialize()
+
+    $.ajax({
+      url: action,
+      data: params,
+      dataType: "json",
+      method: "DELETE"
+    })
+    .success(Comment.destroy)
+  })
+}
+
 Comment.assignListeners = function functionName() {
-  $(document).on("submit", "form#new_comment", Comment.formSubmit)
+  Comment.newCommentListener()
+  Comment.destroyCommentListener()
 }
 
 Comment.ready = function () {
