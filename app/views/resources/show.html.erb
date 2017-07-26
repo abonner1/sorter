@@ -35,9 +35,9 @@
   <ul class="comments-list">
     <% @resource.comments.each do |comment| %>
       <% if comment.content.present? %>
-        <li id="comment-<%= comment.id %>"><%= comment.content %>
+        <li id="comment-<%= comment.id %>"><%= link_to "@#{comment.user.username}", user_resources_path(comment.user) %>: <%= comment.content %>
           <% if correct_user?(comment) %>
-           - <%= link_to "Edit", edit_comment_path(comment)%> <%= button_to "X", comment_path(comment), method: "delete", class: "destroy"%>
+           - <%= link_to "Edit", edit_comment_path(comment)%> <%= button_to "x", comment_path(comment), method: "delete", class: "destroy"%>
            <% end %>
         </li>
       <% end %>
