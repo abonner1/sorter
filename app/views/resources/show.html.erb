@@ -34,11 +34,13 @@
   <h3>Comments:</h3>
   <ul class="comments-list">
     <% @resource.comments.each do |comment| %>
-      <li><%= comment.content %>
-        <% if correct_user?(comment) %>
-         - <%= link_to "Edit", edit_comment_path(comment)%> <%= button_to "X", comment_path(comment), method: 'delete'%>
-         <% end %>
-      </li>
+      <% if comment.content.present? %>
+        <li><%= comment.content %>
+          <% if correct_user?(comment) %>
+           - <%= link_to "Edit", edit_comment_path(comment)%> <%= button_to "X", comment_path(comment), method: 'delete'%>
+           <% end %>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 
