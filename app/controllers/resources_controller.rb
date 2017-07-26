@@ -46,7 +46,10 @@ class ResourcesController < ApplicationController
   end
 
   def destroy
-    @resource.destroy if correct_user?(@resource)
+    if correct_user?(@resource)
+      @resource.comments.destroy
+      @resource.destroy
+    end
     redirect_to root_path
   end
 
