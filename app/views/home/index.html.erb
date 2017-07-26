@@ -5,12 +5,7 @@
 <h3>Here's what people have been reading:</h3>
   <ul id="resources">
     <% @resources.each do |resource| %>
-      <li><%= link_to resource.title, resource_path(resource) %> - <%= link_to "Link", resource.url %>
-        <ul>
-          <% resource.languages.each do |language| %>
-            <li><%= link_to language.name, language_path(language) %></li>
-          <% end %>
-        </ul>
+      <li><%= link_to resource.title, resource_path(resource) %> (<%= resource.languages.map {|l| link_to l.name, language_path(l)}.join(", ").html_safe %>) - <%= link_to "Link", resource.url %>
         <ul>
           <% resource.tags.each do |tag| %>
             <li><%= link_to "##{tag.name}", tag_path(tag) %></li>
