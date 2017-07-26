@@ -13,7 +13,11 @@ class CommentsController < ApplicationController
     @comment = @resource.comments.build(comment_params)
     @comment.user = current_user
     if @resource.save
-      redirect_to resource_path(@resource)
+      respond_to do |f|
+        f.html {redirect_to resource_path(@resource)}
+        f.json {render json: @comment}
+      end
+
     else
       flash[:error] = @comment.errors.full_messages
       redirect_to resource_path(@resource)
