@@ -23,25 +23,24 @@
 <h3>What it's about:</h3>
 <p><%= @resource.description %></p>
 
-<% if correct_user?(@resource) %>
-  <%= link_to "Edit this Resource", edit_resource_path(@resource) %>
-  <%= button_to "Delete this Resource", resource_path(@resource), method: 'delete' %>
-<% end %>
+<div class="resource-links">
+  <% if correct_user?(@resource) %>
+    <%= link_to "Edit this Resource", edit_resource_path(@resource) %>
+    <%= button_to "Delete this Resource", resource_path(@resource), method: 'delete' %>
+  <% end %>
+</div>
 
-<% if @resource.comments.first.content.present? %>
+<div class="resource-comments">
   <h3>Comments:</h3>
-  <ul>
+  <ul class="comments_list">
     <% @resource.comments.each do |comment| %>
-      <% if comment.content.present? %>
       <li><%= comment.content %>
         <% if correct_user?(comment) %>
          - <%= link_to "Edit", edit_comment_path(comment)%> <%= button_to "X", comment_path(comment), method: 'delete'%>
          <% end %>
       </li>
-      <% end %>
     <% end %>
   </ul>
-<% end %>
 
-
-<%= render template: "comments/new" %>
+  <%= render template: "comments/new" %>
+</div>
