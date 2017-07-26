@@ -5,20 +5,23 @@ function Comment(attributes) {
   this.resource_id = attributes.resource_id
 }
 
-Comment.prototype.renderLI = function () {
-  return Comment.template(this)
-};
-
-Comment.success = function (json) {
-  var comment = new Comment(json)
-  var commentLI = comment.renderLI()
-
-  $("ul.comments-list").append(commentLI)
-  $("form#new_comment")[0].reset()
+Comment.ready = function () {
+  Comment.templateSource = $("#comment-template").html()
+  Comment.template = Handlebars.compile(Comment.templateSource)
+  Comment.assignListeners()
 }
 
-Comment.error = function (response) {
-  console.log("You broke it!", response)
+Comment.assignListeners = function functionName() {
+  Comment.newCommentListener()
+  Comment.destroyCommentListener()
+}
+
+Comment.newCommentListener = function () {
+  $("form#new_comment").on("submit", Comment.newFormSubmit)
+}
+
+Comment.destroyCommentListener = function () {
+  $("ul.comments-list").on("click", "input.destroy", Comment.deleteFormSubmit)
 }
 
 Comment.newFormSubmit = function (e) {
@@ -31,21 +34,20 @@ Comment.newFormSubmit = function (e) {
   .error(Comment.error)
 }
 
-Comment.newCommentListener = function () {
-  $("form#new_comment").on("submit", Comment.newFormSubmit)
-}
-
-Comment.destroy = function (json) {
+Comment.success = function (json) {
   var comment = new Comment(json)
-  comment.destroy()
+  var commentLI = comment.renderLI()
+
+  $("ul.comments-list").append(commentLI)
+  $("form#new_comment")[0].reset()
 }
 
-Comment.prototype.$li = function () {
-  return $(`li#comment-${this.id}`)
-}
+Comment.prototype.renderLI = function () {
+  return Comment.template(this)
+};
 
-Comment.prototype.destroy = function () {
-  this.$li().remove()
+Comment.error = function (response) {
+  console.log("You broke it!", response)
 }
 
 Comment.deleteFormSubmit = function (e) {
@@ -60,22 +62,20 @@ Comment.deleteFormSubmit = function (e) {
     dataType: "json",
     method: "DELETE"
   })
-  .success(Comment.destroy)
+  .success(Comment.destroyComment)
 }
 
-Comment.destroyCommentListener = function () {
-  $("ul.comments-list").on("click", "input.destroy", Comment.deleteFormSubmit)
+Comment.destroyComment = function (json) {
+  var comment = new Comment(json)
+  comment.destroy()
 }
 
-Comment.assignListeners = function functionName() {
-  Comment.newCommentListener()
-  Comment.destroyCommentListener()
+Comment.prototype.destroy = function () {
+  this.$li().remove()
 }
 
-Comment.ready = function () {
-  Comment.templateSource = $("#comment-template").html()
-  Comment.template = Handlebars.compile(Comment.templateSource)
-  Comment.assignListeners()
+Comment.prototype.$li = function () {
+  return $(`li#comment-${this.id}`)
 }
 
 document.addEventListener("turbolinks:load", function(event) {
