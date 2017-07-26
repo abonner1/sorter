@@ -2,5 +2,5 @@
 <%= render 'layouts/error_messages' %>
 <%= form_for [@resource, @comment], id: "new_comment" do |f| %>
   <%= render partial: 'comments/form', locals: {f: f} %>
-  <%= f.submit %>
+  <%= f.submit data: { disable_with: false } %>
 <% end %>
