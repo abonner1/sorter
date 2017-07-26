@@ -14,13 +14,14 @@ Comment.success = function (json) {
   var commentLI = comment.renderLI()
 
   $("ul.comments-list").append(commentLI)
+  $("form#new_comment")[0].reset()
 }
 
 Comment.error = function (response) {
   console.log("You broke it!", response)
 }
 
-Comment.formSubmit = function (e) {
+Comment.newFormSubmit = function (e) {
   e.preventDefault()
   var $form = $(this)
   var action = $form.attr("action")
@@ -31,7 +32,7 @@ Comment.formSubmit = function (e) {
 }
 
 Comment.newCommentListener = function () {
-  $("form#new_comment").on("submit", Comment.formSubmit)
+  $("form#new_comment").on("submit", Comment.newFormSubmit)
 }
 
 Comment.destroy = function (json) {
@@ -47,21 +48,23 @@ Comment.prototype.destroy = function () {
   this.$li().remove()
 }
 
-Comment.destroyCommentListener = function () {
-  $("input.destroy").on("click", function (e) {
-    e.preventDefault()
-    var $form = $(this).parent("form")
-    var action = $form.attr("action")
-    var params = $form.serialize()
+Comment.deleteFormSubmit = function (e) {
+  e.preventDefault()
+  var $form = $(this).parent("form")
+  var action = $form.attr("action")
+  var params = $form.serialize()
 
-    $.ajax({
-      url: action,
-      data: params,
-      dataType: "json",
-      method: "DELETE"
-    })
-    .success(Comment.destroy)
+  $.ajax({
+    url: action,
+    data: params,
+    dataType: "json",
+    method: "DELETE"
   })
+  .success(Comment.destroy)
+}
+
+Comment.destroyCommentListener = function () {
+  $("ul.comments-list").on("click", "input.destroy", Comment.deleteFormSubmit)
 }
 
 Comment.assignListeners = function functionName() {
