@@ -1,8 +1,8 @@
 function Comment(attributes) {
   this.id = attributes.id
   this.content = attributes.content
-  this.user_id = attributes.user_id
   this.resource_id = attributes.resource_id
+  this.user = new User(attributes.user)
 }
 
 Comment.ready = function () {
@@ -42,11 +42,11 @@ Comment.success = function (json) {
 
 Comment.prototype.renderLI = function () {
   return `
-  <li id="comment-${this.id}">${this.content}
+  <li id="comment-${this.id}"><a href="/users/${this.user.id}/resources">@${this.user.username}</a>: ${this.content}
   - <a href="/comments/${this.id}/edit">Edit</a>
     <form class="button_to" method="post" action="/comments/${this.id}">
       <input type="hidden" name="_method" value="delete">
-      <input class="destroy" type="submit" value="X">
+      <input class="destroy" type="submit" value="x">
     </form>
   </li>
   `
