@@ -1,6 +1,12 @@
 <h1>Your Resources</h1>
 <ul>
   <% current_user.resources.each do |resource| %>
-    <li><%= link_to resource.title, resource_path(resource) %> - <%= link_to "Link", resource.url %></li>
+    <li><%= link_to resource.title, resource_path(resource) %> - <%= link_to "Link", resource.url %>
+      <ul>
+        <% resource.tags.each do |tag| %>
+          <li><%= link_to tag.name, tag_path(tag) %></li>
+        <% end %>
+      </ul>
+    </li>
   <% end %>
 </ul>
