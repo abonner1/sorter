@@ -5,11 +5,6 @@ function Comment(attributes) {
   this.resource_id = attributes.resource_id
 }
 
-document.addEventListener("turbolinks:load", function(event) {
-  Comment.templateSource = $("#comment-template").html()
-  Comment.template = Handlebars.compile(Comment.templateSource)
-});
-
 Comment.prototype.renderLI = function () {
   return Comment.template(this)
 };
@@ -35,4 +30,16 @@ Comment.formSubmit = function (e) {
   .error(Comment.error)
 }
 
-$(document).on("submit", "form#new_comment", Comment.formSubmit)
+Comment.assignListeners = function functionName() {
+  $(document).on("submit", "form#new_comment", Comment.formSubmit)
+}
+
+Comment.ready = function () {
+  Comment.templateSource = $("#comment-template").html()
+  Comment.template = Handlebars.compile(Comment.templateSource)
+  Comment.assignListeners()
+}
+
+document.addEventListener("turbolinks:load", function(event) {
+  Comment.ready()
+});
