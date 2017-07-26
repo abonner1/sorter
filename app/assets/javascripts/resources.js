@@ -1,9 +1,9 @@
-function Resource(resource) {
-  this.id = resource.id
-  this.title = resource.title
-  this.url = resource.url
-  this.description = resource.description
-  this.user_id = resource.user_id
+function Resource(attributes) {
+  this.id = attributes.id
+  this.title = attributes.title
+  this.url = attributes.url
+  this.description = attributes.description
+  this.user_id = attributes.user_id
 }
 
 Resource.getResourcesAPI = function (e) {
