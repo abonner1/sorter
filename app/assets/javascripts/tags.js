@@ -3,6 +3,6 @@ function Tag(attributes) {
   this.name = attributes.name
 }
 
-Tag.renderLI = function (tag) {
-  return `<li><a href="/tags/${tag.id}">${tag.name}</a></li>`
+Tag.renderLink = function (tag) {
+  return `<a href="/tags/${tag.id}">${tag.name}</a>`
 }
