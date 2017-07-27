@@ -13,11 +13,7 @@
     <% if user_signed_in? %>
     <h3>Here's what people have been reading:</h3>
       <ul id="resources-list" class="list-unstyled">
-        <% @resources.each do |resource| %>
-          <li><%= link_to resource.title, resource_path(resource), class: "resource resource-links" %> (<%= resource.languages.map {|l| link_to l.name, language_path(l), class: "lang lang-links"}.join(", ").html_safe %>) <%= link_to "", resource.url, class: "glyphicon glyphicon-link" %> -
-            <%= resource.tags.collect {|t| link_to t.name, tag_path(t), class: "tag tag-links"}.join(" / ").html_safe if resource.tags.first%>
-          </li>
-        <% end %>
+        <%= render partial: "/resources/display_resources", collection: @resources, as: :resource %>
       </ul>
     <% end %>
     <% if !user_signed_in? %>
