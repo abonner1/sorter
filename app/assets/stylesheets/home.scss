@@ -25,8 +25,9 @@ h1.welcome.welcome-banner span.dif-text {
   color:white;
 }
 
-p.logged-out-message {
+p.logged-out-message, p.logged-out-message a {
   font-size: 20px;
+  text-decoration: none;
 }
 
 #flash_error, #flash_alert {
