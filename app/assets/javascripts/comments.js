@@ -43,10 +43,10 @@ Comment.success = function (json) {
 Comment.prototype.renderLI = function () {
   return `
   <li id="comment-${this.id}"><a href="/users/${this.user.id}/resources">@${this.user.username}</a>: ${this.content}
-  - <a href="/comments/${this.id}/edit">Edit</a>
+  <a href="/comments/${this.id}/edit"><span class="glyphicon glyphicon-edit"></span></a>
     <form class="button_to" method="post" action="/comments/${this.id}">
       <input type="hidden" name="_method" value="delete">
-      <input class="destroy" type="submit" value="x">
+      <input class="destroy btn btn-default btn-space" type="submit" value="x">
     </form>
   </li>
   `
