@@ -1,4 +1,4 @@
-a.glyphicon.glyphicon-link, a.tag.tag-links, a.lang.lang-links, a.user.user-link, a.resource.resource-links {
+a.glyphicon.glyphicon-link, a.tag.tag-links, a.lang.lang-links, a.user.user-link, a.resource.resource-links, .glyphicon.glyphicon-plus {
   text-decoration: none;
 }
 
@@ -35,7 +35,7 @@ div.col-md-3 {
   border-right: 1px solid #9D9D9D;
 }
 
-div.resource-links hr {
+div.resource-links hr, div.col-md-9 hr {
   border-top: 1px solid #ccc;
 }
 
