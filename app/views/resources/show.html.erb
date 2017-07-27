@@ -1,48 +1,53 @@
-<h1><%= @resource.title %></h1>
-<% if @resource.user %>
-  <p>Added by <%= @resource.user_name %>.</p>
-<% end %>
+<div class="row">
+  <div class="col-md-3">
+    <div class="resource-links">
+      <% if correct_user?(@resource) %>
+      <div class="btn-group-lg btn-group-vertical">
+        <%= link_to "Edit this Resource", edit_resource_path(@resource), class: "btn btn-default btn-space" %>
+        <%= link_to "Delete this Resource", resource_path(@resource), method: "delete", class: "btn btn-default btn-space", id: "edit-button"  %>
+      </div>
 
-<ul>
-  <% @resource.languages.each do |language| %>
-    <li><%= link_to language.name, language_path(language) %></li>
-  <% end %>
-</ul>
-
-<% if @resource.tags.first %>
-  <h3>Tags:</h3>
-  <ul>
-    <% @resource.tags.each do |tag| %>
-      <li><%= tag.name %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<p>URL: <%= link_to @resource.url, @resource.url %></p>
-
-<h3>What it's about:</h3>
-<p><%= @resource.description %></p>
-
-<div class="resource-links">
-  <% if correct_user?(@resource) %>
-    <%= link_to "Edit this Resource", edit_resource_path(@resource) %>
-    <%= button_to "Delete this Resource", resource_path(@resource), method: 'delete' %>
-  <% end %>
-</div>
-
-<div class="resource-comments">
-  <h3>Comments:</h3>
-  <ul class="comments-list">
-    <% @resource.comments.each do |comment| %>
-      <% if comment.content.present? %>
-        <li id="comment-<%= comment.id %>"><%= link_to "@#{comment.user.username}", user_resources_path(comment.user) %>: <%= comment.content %>
-          <% if correct_user?(comment) %>
-           - <%= link_to "Edit", edit_comment_path(comment)%> <%= button_to "x", comment_path(comment), method: "delete", class: "destroy"%>
-           <% end %>
-        </li>
       <% end %>
+      <h3>Languages:</h3>
+      <p>Let's see where this breaks a long block of text. Do you think this is long enough now</p>
+    </div>
+  </div>
+  <!-- <div class="col-md-1"></div> -->
+  <div class="col-md-9">
+    <h1><%= @resource.title %> <%= link_to "", @resource.url, class: "glyphicon glyphicon-link" %></h1>
+    <%= @resource.tags.map {|t| link_to t.name, tag_path(t), id: "tag-links"}.join(" / ").html_safe if @resource.tags.first%>
+    <% if @resource.user %>
+      <p>Added by <%= @resource.user_name %>.</p>
     <% end %>
-  </ul>
+    <h3>What it's about:</h3>
+    <p><%= @resource.description %></p>
+  </div>
 
-  <%= render template: "comments/new" %>
+
+  <!-- <ul>
+    <% @resource.languages.each do |language| %>
+      <li><%= link_to language.name, language_path(language) %></li>
+    <% end %>
+  </ul> -->
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <div class="resource-comments">
+      <h3>Comments:</h3>
+      <ul class="comments-list">
+        <% @resource.comments.each do |comment| %>
+          <% if comment.content.present? %>
+            <li id="comment-<%= comment.id %>"><%= link_to "@#{comment.user.username}", user_resources_path(comment.user) %>: <%= comment.content %>
+              <% if correct_user?(comment) %>
+              <%= link_to ('<span class="glyphicon glyphicon-edit"></span>').html_safe, edit_comment_path(comment)%> <%= button_to "x", comment_path(comment), method: "delete", class: "destroy btn btn-default btn-space"%>
+               <% end %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <%= render template: "comments/new" %>
+  </div>
 </div>
