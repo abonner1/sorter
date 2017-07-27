@@ -1,7 +1,10 @@
-<h1>Languages</h1>
+<div class="col-md-3">
 
-<%= link_to "Add Language", new_language_path %>
-
-<ul>
-  <%= render partial: 'display_languages', collection: @languages, as: :language %>
-</ul>
+</div>
+<div class="col-md-6">
+  <h1>Languages <%= link_to "", new_language_path, class: "glyphicon glyphicon-plus" %></h1>
+  <hr>
+  <ul class="lang-list list-unstyled">
+    <%= render partial: 'display_languages', collection: @languages, as: :language %>
+  </ul>
+</div>
