@@ -1,12 +1,8 @@
-<h1><%= @user.username %>'s Resources:</h1>
-<ul>
-  <% @user.resources.each do |resource| %>
-    <li><%= link_to resource.title, resource_path(resource) %> - <%= link_to "Link", resource.url %>
-      <ul>
-        <% resource.tags.each do |tag| %>
-          <li><%= link_to tag.name, tag_path(tag) %></li>
-        <% end %>
-      </ul>
-    </li>
-  <% end %>
-</ul>
+<div class="col-md-3"></div>
+<div class="col-md-6">
+  <h1><%= @user.username %>'s Resources:</h1>
+  <hr>
+  <ul class="list-unstyled">
+    <%= render partial: "/resources/display_resources", collection: @user.resources, as: :resource %>
+  </ul>
+</div>

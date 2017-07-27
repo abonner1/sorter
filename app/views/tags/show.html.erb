@@ -1,9 +1,13 @@
-<h1><%= @tag.name %></h1>
-<h3>Resources with this topic:</h3>
-<ul>
-  <% @tag.resources.each do |resource| %>
-    <li><%= link_to resource.title, resource_path(resource) %></li>
-  <% end %>
-</ul>
-
-<%= button_to "Delete", tag_path(@tag), method: "delete" %>
+<div class="col-md-2">
+  <%= button_to "Delete", tag_path(@tag), method: "delete", class: "btn btn-default btn-space" %>
+</div>
+<div class="col-md-6">
+  <h1><%= @tag.name %></h1>
+  <hr>
+  <h3>Resources with this topic:</h3>
+  <ul class="list-unstyled">
+    <% @tag.resources.each do |resource| %>
+      <li><%= link_to resource.title, resource_path(resource), class: "resource resource-links" %></li>
+    <% end %>
+  </ul>
+</div>
