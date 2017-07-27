@@ -19,7 +19,7 @@ Comment.newCommentListener = function () {
 }
 
 Comment.destroyCommentListener = function () {
-  $("ul.comments-list").on("click", "input.destroy", Comment.deleteFormSubmit)
+  $("ul.comments-list").on("click", "button.destroy", Comment.deleteFormSubmit)
 }
 
 Comment.newFormSubmit = function (e) {
@@ -44,9 +44,11 @@ Comment.prototype.renderLI = function () {
   return `
   <li id="comment-${this.id}"><a href="/users/${this.user.id}/resources">@${this.user.username}</a>: ${this.content}
   <a href="/comments/${this.id}/edit"><span class="glyphicon glyphicon-edit"></span></a>
-    <form class="button_to" method="post" action="/comments/${this.id}">
+    <form class="delete-form" method="post" action="/comments/${this.id}">
       <input type="hidden" name="_method" value="delete">
-      <input class="destroy btn btn-default btn-space" type="submit" value="x">
+      <button class="destroy btn btn-link" type="submit">
+        <span class="glyphicon glyphicon-remove"></span>
+      </button>
     </form>
   </li>
   `
