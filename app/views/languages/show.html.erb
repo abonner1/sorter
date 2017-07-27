@@ -1,9 +1,13 @@
-<h1><%= @language.name %></h1>
+<div class="col-md-2">
+  <%= button_to "Delete #{@language.name}", language_path(@language), method: "delete", class: "btn btn-default btn-space" %>
+</div>
+<div class="col-md-6">
+  <h1><%= @language.name %></h1>
+  <p><%= @language.description %></p>
+  <hr>
+  <h3>Resources:</h3>
+  <ul class="list-unstyled">
+    <%= render partial: "/resources/display_resources", collection: @language.resources, as: :resource %>
+  </ul>
 
-<p><%= @language.description %></p>
-
-<h3>Resources:</h3>
-<ul>
-  <%= render partial: "/resources/display_resources", collection: @language.resources, as: :resource %>
-</ul>
-<%= button_to "Delete #{@language.name}", language_path(@language), method: "delete" %>
+</div>
