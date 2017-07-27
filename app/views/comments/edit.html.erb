@@ -2,5 +2,5 @@
 <%= render "layouts/error_messages" %>
 <%= form_for @comment do |f| %>
   <%= render partial: "form", locals: {f: f} %>
-  <%= f.submit %>
+  <%= f.submit class: "btn btn-default btn-space"%>
 <% end %>
