@@ -21,7 +21,8 @@
       </ul>
     <% end %>
     <% if !user_signed_in? %>
-      <%= link_to "Sign in with GitHub", user_github_omniauth_authorize_path %>
+      <p class="logged-out-message">To get started <a href="#">Sign up</a> or <%= link_to "Sign up with GitHub", user_github_omniauth_authorize_path %>.</p>
+      <p class="logged-out-message">Or if you've been here before <a href="#">Log in</a> or <%= link_to "Sign in with GitHub", user_github_omniauth_authorize_path %>!</p>
     <% end %>
   </div>
 </div>
