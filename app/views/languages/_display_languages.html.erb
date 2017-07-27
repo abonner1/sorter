@@ -1,1 +1,2 @@
-<li><%= link_to language.name, language_path(language), class: "lang lang-links" %> - <%= language.description %></li>
+<li><%= link_to language.name, language_path(language), class: "lang lang-links" %> - <%= truncate language.description, length: 60 %></li>
+<hr>
