@@ -15,6 +15,16 @@ body, #main {
   margin-right: 5px;
 }
 
+h1.welcome.welcome-banner {
+  font-size: 100px;
+  background-color: #222222;
+  border-radius: 15px;
+}
+
+h1.welcome.welcome-banner span.dif-text {
+  color:white;
+}
+
 #flash_error, #flash_alert {
   color: red;
 }
