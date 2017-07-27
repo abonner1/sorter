@@ -1,19 +1,27 @@
-<h1>Welcome to Sorter!</h1>
-<p>The perfect place to organize all your web resources on anything coding. And see what others are learning.</p>
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="text-center welcome welcome-banner">Welcome to <span class="dif-text">Sorter</span>!</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <p>The perfect place to organize all your web resources on anything coding. And see what others are learning.</p>
+  </div>
 
-<% if user_signed_in? %>
-<h3>Here's what people have been reading:</h3>
-  <ul id="resources">
-    <% @resources.each do |resource| %>
-      <li><%= link_to resource.title, resource_path(resource) %> (<%= resource.languages.map {|l| link_to l.name, language_path(l)}.join(", ").html_safe %>) - <%= link_to "Link", resource.url %>
-        <ul>
-          <% resource.tags.each do |tag| %>
-            <li><%= link_to "##{tag.name}", tag_path(tag) %></li>
-          <% end %>
-        </ul>
-      </li>
+
+  <div class="col-md-9">
+    <% if user_signed_in? %>
+    <h3>Here's what people have been reading:</h3>
+      <ul id="resources-list" class="list-unstyled">
+        <% @resources.each do |resource| %>
+          <li><%= link_to resource.title, resource_path(resource), class: "resource resource-links" %> (<%= resource.languages.map {|l| link_to l.name, language_path(l), class: "lang lang-links"}.join(", ").html_safe %>) <%= link_to "", resource.url, class: "glyphicon glyphicon-link" %> -
+            <%= resource.tags.collect {|t| link_to t.name, tag_path(t), class: "tag tag-links"}.join(" / ").html_safe if resource.tags.first%>
+          </li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
-
-<%= link_to "Sign in with GitHub", user_github_omniauth_authorize_path if !user_signed_in?%>
+    <% if !user_signed_in? %>
+      <%= link_to "Sign in with GitHub", user_github_omniauth_authorize_path %>
+    <% end %>
+  </div>
+</div>
