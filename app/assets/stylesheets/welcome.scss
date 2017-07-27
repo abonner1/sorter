@@ -15,7 +15,7 @@ body, #main {
   margin-right: 5px;
 }
 
-a.glyphicon.glyphicon-link, a#tag-links {
+a.glyphicon.glyphicon-link, a#tag-links, a#lang-links {
   text-decoration: none;
 }
 
@@ -36,10 +36,21 @@ textarea.text-input-area {
   border-color: black;
   border-radius: 4px;
   color: #9D9D9D;
+  width: 450px;
+  height: 200px;
+  resize: none;
 }
 
 div.col-md-3 {
   border-right: 1px solid #9D9D9D;
+}
+
+div.resource-links hr {
+  border-top: 1px solid #ccc;
+}
+
+form.delete-form {
+  display: inline;
 }
 
 #flash_error, #flash_alert {
