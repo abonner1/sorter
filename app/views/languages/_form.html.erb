@@ -1,4 +1,8 @@
-<%= f.label "Name:" %>
-<%= f.text_field :name %><br>
-<%= f.label "About the language:" %>
-<%= f.text_area :description %><br>
+<div class="form-group">
+  <%= f.label "Name" %>
+  <%= f.text_field :name, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= f.label "A little about the language" %>
+  <%= f.text_area :description, class: "form-control" %>
+</div>

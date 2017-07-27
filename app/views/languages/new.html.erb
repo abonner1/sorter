@@ -1,8 +1,12 @@
-<h1>Add a New Language</h1>
+<div class="col-md-3"></div>
+<div class="col-md-6">
+  <h1>Add a New Language</h1>
 
-<%= render '/layouts/error_messages' %>
+  <%= render '/layouts/error_messages' %>
 
-<%= form_for @language do |f| %>
-  <%= render partial: "form", locals: {f: f} %>
-  <%= f.submit %>
-<% end %>
+  <%= form_for @language do |f| %>
+    <%= render partial: "form", locals: {f: f} %>
+    <%= f.submit class: "btn btn-default btn-space" %>
+  <% end %>
+</div>
+<div class="col-md-3"></div>
