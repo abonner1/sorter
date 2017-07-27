@@ -9,13 +9,13 @@
 
       <% end %>
       <h3>Languages:</h3>
-      <%= @resource.languages.collect {|l| link_to l.name, language_path(l), id: "lang-links"}.join(", ").html_safe %>
+      <%= @resource.languages.collect {|l| link_to l.name, language_path(l), class: "lang lang-links"}.join(", ").html_safe %>
       <hr>
     </div>
   </div>
   <div class="col-md-9">
     <h1><%= @resource.title %> <%= link_to "", @resource.url, class: "glyphicon glyphicon-link" %></h1>
-    <%= @resource.tags.collect {|t| link_to t.name, tag_path(t), id: "tag-links"}.join(" / ").html_safe if @resource.tags.first%>
+    <%= @resource.tags.collect {|t| link_to t.name, tag_path(t), class: "tag tag-links"}.join(" / ").html_safe if @resource.tags.first%>
     <% if @resource.user %>
       <p>Added by <%= @resource.user_name %>.</p>
     <% end %>
@@ -30,7 +30,7 @@
       <ul class="comments-list list-unstyled">
         <% @resource.comments.each do |comment| %>
           <% if comment.content.present? %>
-            <li id="comment-<%= comment.id %>"><%= link_to "@#{comment.user.username}", user_resources_path(comment.user) %>: <%= comment.content %>
+            <li id="comment-<%= comment.id %>"><%= link_to "@#{comment.user.username}", user_resources_path(comment.user), class: "user user-link" %>: <%= comment.content %>
               <% if correct_user?(comment) %>
               <%= link_to ('<span class="glyphicon glyphicon-edit"></span>').html_safe, edit_comment_path(comment)%>
               <%= button_to comment_path(comment), method: "delete", class: "destroy btn btn-link", form_class: "delete-form" do %>
