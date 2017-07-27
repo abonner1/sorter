@@ -53,6 +53,15 @@ form.delete-form {
   display: inline;
 }
 
+div.resource-comments ul.comments-list {
+  background-color: #222222;
+  border-radius: 15px;
+}
+
+ul.comments-list li {
+  margin-left: 10px;
+}
+
 #flash_error, #flash_alert {
   color: red;
 }
