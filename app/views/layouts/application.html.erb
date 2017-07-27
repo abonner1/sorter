@@ -11,7 +11,8 @@
   <body>
     <%= render '/layouts/navigation' %>
     <%= render '/layouts/messages' %>
-    <%= yield %>
-    <%= render '/layouts/current_user' %>
+    <div class="container-fluid" id="main">
+      <%= yield %>
+    </div>
   </body>
 </html>
