@@ -5,6 +5,7 @@ function Resource(attributes) {
   this.description = attributes.description
   this.user_id = attributes.user_id
   this.tags = attributes.tags
+  this.languages = attributes.languages
 }
 
 Resource.ready = function () {
@@ -41,10 +42,12 @@ Resource.renderLI = function (resource) {
 
 Resource.prototype.formatListItems = function () {
   return `
-  <li><a href="/resources/${this.id}">${this.title}</a> - <a href="${this.url}">Link</a>
-    <ul>
-      ${this.tags.map(Tag.renderLI).join("")}
-    <ul>
+  <li>
+    <a class="resource resource-links" href="/resources/${this.id}" >${this.title}</a>
+    <a class="glyphicon glyphicon-link" href="${this.url}"></a> -
+    ${this.tags.map(Tag.renderLink).join(" / ")}<br>
+    (${this.languages.map(Language.renderLink).join(", ")})
+    <hr>
   </li>`
 };
 
