@@ -4,8 +4,8 @@ function Resource(attributes) {
   this.url = attributes.url
   this.description = attributes.description
   this.user_id = attributes.user_id
-  this.tags = attributes.tags
-  this.languages = attributes.languages
+  this.tags = []
+  this.languages = []
 }
 
 Resource.ready = function () {
@@ -30,6 +30,19 @@ Resource.success = function (json) {
   var resources = json.map(function (resource) {
     return new Resource(resource)
   })
+
+  json.forEach(function (resource, i) {
+    var tags = resource.tags.map(function (tag) {
+      return new Tag(tag)
+    })
+    var languages = resource.languages.map(function (language) {
+      return new Language(language)
+    })
+    
+    resources[i].tags = tags
+    resources[i].languages = languages
+  })
+
   var $ul = $("#resource_list").empty()
 
   resources.forEach(Resource.renderLI)
