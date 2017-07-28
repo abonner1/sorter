@@ -38,7 +38,7 @@ Resource.success = function (json) {
     var languages = resource.languages.map(function (language) {
       return new Language(language)
     })
-    
+
     resources[i].tags = tags
     resources[i].languages = languages
   })
