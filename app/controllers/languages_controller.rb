@@ -20,6 +20,10 @@ class LanguagesController < ApplicationController
   end
 
   def show
+    respond_to do |f|
+      f.html {@language}
+      f.json {render json: @language, include: {resources: [languages: [] , tags: []]}}
+    end
   end
 
   def destroy
