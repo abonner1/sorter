@@ -32,11 +32,11 @@
           <% if comment.content.present? %>
             <li id="comment-<%= comment.id %>"><%= link_to "@#{comment.user.username}", user_resources_path(comment.user), class: "user user-link" %>: <%= comment.content %>
               <% if correct_user?(comment) %>
-              <%= link_to ('<span class="glyphicon glyphicon-edit"></span>').html_safe, edit_comment_path(comment)%>
-              <%= button_to comment_path(comment), method: "delete", class: "destroy btn btn-link", form_class: "delete-form" do %>
-                <span class="glyphicon glyphicon-remove"></span>
+                <%= link_to ('<span class="glyphicon glyphicon-edit"></span>').html_safe, edit_comment_path(comment)%>
+                <%= button_to comment_path(comment), method: "delete", class: "destroy btn btn-link", form_class: "delete-form" do %>
+                  <span class="glyphicon glyphicon-remove"></span>
+                <% end %>
               <% end %>
-               <% end %>
             </li>
           <% end %>
         <% end %>
