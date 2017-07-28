@@ -1,4 +1,6 @@
 <li><%= link_to resource.title, resource_path(resource), class: "resource resource-links" %>
+  <%= link_to "", resource.url, class: "glyphicon glyphicon-link" %>
   (<%= resource.languages.map {|l| link_to l.name, language_path(l), class: "lang lang-links"}.join(", ").html_safe %>) -
   <%= resource.tags.collect {|t| link_to t.name, tag_path(t), class: "tag tag-links"}.join(" / ").html_safe if resource.tags.first %>
 </li>
+<hr>
