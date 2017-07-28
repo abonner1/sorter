@@ -1,3 +1,3 @@
 class ResourceLanguageSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id, :name, :description
 end
