@@ -1,52 +1,84 @@
 function Language(attributes) {
   this.name = attributes.name
   this.description = attributes.description
+  this.resources = []
 }
 
 Language.renderLink = function (language) {
   return `<a class="lang lang-links" href="/languages/${language.id}">${language.name}</a>`
 }
 
-$(function () {
-  $("li").on("click", ".js-next", function (e) {
-    e.preventDefault()
-    var nextId = parseInt(e.currentTarget.dataset.id, 10)
-    console.log(nextId)
-    $.get(`/languages/${nextId}`, function (json) {
-      history.pushState(json, `${json.name}`, `/languages/${json.id}`)
-      $(".language-name").text(json.name)
-      $(".language-description").text(json.description)
-      var resources = json.resources.map(function (resource) {
-        return new Resource(resource)
-      })
-      $("#resource_list").empty()
-      resources.forEach(Resource.renderLI)
-      var newButton = `<form class="button_to" method="post" action="/languages/${json.id}">
-      <input type="hidden" name="_method" value="delete">
-      <input class="btn btn-default btn-space" type="submit" value="Delete ${json.name}">`
-      $(".col-md-2").html(newButton)
+Language.attachListener = function () {
+  $("li").on("click", ".js-next", Language.dynamicNav)
+}
 
-    }, "json").error(function (response) {
-      console.log("Something went wrong...")
-    })
+Language.dynamicNav = function (e) {
+  var nextId = parseInt(e.currentTarget.dataset.id, 10)
+
+  e.preventDefault()
+
+  $.get(`/languages/${nextId}`, Language.parseJSON, "json").error(function (response) {
+    console.log("Something went wrong...")
   })
-})
+}
 
+Language.parseJSON = function (json) {
+  var language = new Language(json)
 
+  Language.updateURL(json)
 
+  language.resources = json.resources.map(function (resource) {
+    return new Resource(resource)
+  })
 
+  json.resources.forEach(function (resource, i) {
+    var tags = resource.tags.map(function (tag) {
+      return new Tag(tag)
+    })
+    var languages = resource.languages.map(function (language) {
+      return new Language(language)
+    })
 
+    language.resources[i].tags = tags
+    language.resources[i].languages = languages
+  })
 
+  language.updateContent()
+}
 
-// $(".js-next").on("click", function (e) {
-//   e.preventDefault()
-//   var nextID = parseInt($(".js-next").data("id"))
-//   $.get(`/languages/${nextID}`, function (json) {
-//     history.pushState(json, `${json.name}`, `/languages/${json.id}`)
-//     $(".language-name").text(json["name"])
-//     $(".language-description").text(json["description"])
-//     $(".js-next").data("id", parseInt(window.location.href.charAt(window.location.href.length - 1), 10) + 1)
-//   }, "json").error(function (response) {
-//     console.log("You broke it...", response)
-//   })
-// })
+Language.updateURL = function (object) {
+  history.pushState(object, `${object.name}`, `/languages/${object.id}`)
+}
+
+Language.prototype.updateContent = function () {
+  this.populateName()
+  this.populateDescription()
+
+  $("#resource_list").empty()
+
+  this.resources.forEach(Resource.renderLI)
+
+  this.changeButton()
+}
+
+Language.prototype.populateName = function () {
+  $(".language-name").text(this.name)
+}
+
+Language.prototype.populateDescription = function () {
+  $(".language-description").text(this.description)
+}
+
+Language.prototype.changeButton = function () {
+  var newButton = this.button()
+  
+  $(".col-md-2").html(newButton)
+}
+
+Language.prototype.button = function () {
+  return `<form class="button_to" method="post" action="/languages/${this.id}">
+  <input type="hidden" name="_method" value="delete">
+  <input class="btn btn-default btn-space" type="submit" value="Delete ${this.name}">`
+}
+
+$(() => Language.attachListener())
