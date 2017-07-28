@@ -1,15 +1,16 @@
 function Language(attributes) {
+  this.id = attributes.id
   this.name = attributes.name
   this.description = attributes.description
   this.resources = []
 }
 
 Language.renderLink = function (language) {
-  return `<a class="lang lang-links" href="/languages/${language.id}">${language.name}</a>`
+  return `<a class="lang lang-links js-next" data-id="${language.id}" href="/languages/${language.id}">${language.name}</a>`
 }
 
 Language.attachListener = function () {
-  $("li").on("click", ".js-next", Language.dynamicNav)
+  $(document).on("click", ".js-next", Language.dynamicNav)
 }
 
 Language.dynamicNav = function (e) {
@@ -71,7 +72,7 @@ Language.prototype.populateDescription = function () {
 
 Language.prototype.changeButton = function () {
   var newButton = this.button()
-  
+
   $(".col-md-2").html(newButton)
 }
 
