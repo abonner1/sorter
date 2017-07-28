@@ -1,8 +1,8 @@
-<div class="row">
+<!-- <div class="row">
   <div class="col-lg-12">
     <h1 class="text-center welcome welcome-banner">Welcome to <span class="dif-text">Sorter</span>!</h1>
   </div>
-</div>
+</div> -->
 <div class="row">
   <div class="col-md-3">
     <p>The perfect place to organize all your web resources on anything coding. And see what others are learning.</p>
@@ -12,6 +12,7 @@
   <div class="col-md-9">
     <% if user_signed_in? %>
     <h3>Here's what people have been reading:</h3>
+    <hr>
       <ul id="resources-list" class="list-unstyled">
         <%= render partial: "/resources/display_resources", collection: @resources, as: :resource %>
       </ul>
