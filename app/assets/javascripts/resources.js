@@ -44,9 +44,9 @@ Resource.prototype.formatListItems = function () {
   return `
   <li>
     <a class="resource resource-links" href="/resources/${this.id}" >${this.title}</a>
-    <a class="glyphicon glyphicon-link" href="${this.url}"></a> -
-    ${this.tags.map(Tag.renderLink).join(" / ")}<br>
-    (${this.languages.map(Language.renderLink).join(", ")})
+    <a class="glyphicon glyphicon-link" href="${this.url}"></a>
+    (${this.languages.map(Language.renderLink).join(", ")}) -
+    ${this.tags.map(Tag.renderLink).join(" / ")}
     <hr>
   </li>`
 };
