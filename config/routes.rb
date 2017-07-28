@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     resources :resources, shallow: true do
-      resources :comments, shallow: true
+      resources :comments, shallow: true, only: [:new, :create, :edit, :update, :destroy]
     end
   end
 

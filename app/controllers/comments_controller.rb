@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_resource, only: [:index, :new, :create]
+  before_action :set_resource, only: [ :new, :create]
   before_action :set_comment, only: [:edit, :update, :destroy]
 
   def index
