@@ -2,11 +2,18 @@
   <%= button_to "Delete #{@language.name}", language_path(@language), method: "delete", class: "btn btn-default btn-space" %>
 </div>
 <div class="col-md-6">
-  <h1><%= @language.name %></h1>
-  <p><%= @language.description %></p>
+  <h1 class="language-name"><%= @language.name %></h1>
+  <p class="language-description"><%= @language.description %></p>
   <hr>
   <h3>Resources:</h3>
-  <ul class="list-unstyled">
+  <ul class="list-unstyled" id="resource_list">
     <%= render partial: "/resources/display_resources", collection: @language.resources, as: :resource %>
+  </ul>
+</div>
+<div class="col-md-4">
+  <ul class="list-unstyled">
+    <% Language.all.each do |language| %>
+      <li><%= link_to language.name, language_path(language), class: "lang lang-links js-next", data: {id: language.id}%></li>
+    <% end %>
   </ul>
 </div>
