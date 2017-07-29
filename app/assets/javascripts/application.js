@@ -3,6 +3,6 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-$(window).bind('popstate', () => {
+$(window).on('popstate', () => {
  window.location.href = window.location.href;
  });
