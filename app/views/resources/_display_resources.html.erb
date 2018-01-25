@@ -1,10 +1,10 @@
 <li><%= link_to resource.title, resource_path(resource), class: "resource resource-links" %>
   <%= link_to "", resource.url, class: "glyphicon glyphicon-link", target: :_blank  %>
   <% if resource.languages.length > 0 %>
-  (<%= resource.languages.map {|l| link_to l.name, language_path(l), class: "lang lang-links js-next", data: {id: l.id}}.join(", ").html_safe %>) -
+  (<%= resource.languages.map {|l| link_to l.name, language_path(l), class: "lang lang-links js-next", data: {id: l.id}}.join(", ").html_safe %>)
   <% end %>
   <% if resource.tags.length > 0 %>
-  <%= resource.tags.collect {|t| link_to t.name, tag_path(t), class: "tag tag-links"}.join(" / ").html_safe if resource.tags.first %>
+   - <%= resource.tags.collect {|t| link_to t.name, tag_path(t), class: "tag tag-links"}.join(" / ").html_safe if resource.tags.first %>
   <% end %>
 </li>
 <hr>
