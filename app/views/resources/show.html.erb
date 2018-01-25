@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="col-md-9">
-    <h1><%= @resource.title %> <%= link_to "", @resource.url, class: "glyphicon glyphicon-link" %></h1>
+    <h1><%= @resource.title %> <%= link_to "", @resource.url, class: "glyphicon glyphicon-link", target: :_blank  %></h1>
     <%= @resource.tags.collect {|t| link_to t.name, tag_path(t), class: "tag tag-links"}.join(" / ").html_safe if @resource.tags.first%>
     <% if @resource.user %>
       <p>Added by <%= @resource.user_name %>.</p>

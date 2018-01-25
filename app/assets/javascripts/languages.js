@@ -82,4 +82,4 @@ Language.prototype.button = function () {
   <input class="btn btn-default btn-space" type="submit" value="Delete ${this.name}">`
 }
 
-$(() => Language.attachListener())
+// $(() => Language.attachListener())
